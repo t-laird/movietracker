@@ -34,4 +34,8 @@ export const fetchMovieList = (url) => {
         .then((items) => dispatch(moviesFetchDataSuccess(items)))
         .catch(() => dispatch(moviesHasErrored(true)));
   };
-}
+};
+
+export const signIn = (userLogin) => {
+  
+};
