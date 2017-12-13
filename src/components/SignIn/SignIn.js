@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './SignIn.css';
 import { connect } from 'react-redux';
 import { Dispatch } from 'react-redux';
+import { signInAttempt } from '../../Actions';
 
 class SignIn extends Component {
   constructor() {
@@ -39,9 +40,8 @@ class SignIn extends Component {
     }
   }
 
-  submitHandler(e) {
+  submitHandler = (e) => {
     e.preventDefault();
-    console.log('submit hooked up');
     this.props.signInToApp(this.state.usernameInputVal, this.state.passwordInputVal);
   }
 
@@ -84,11 +84,11 @@ class SignIn extends Component {
 
 const mapDispatchToProps = dispatch => ({
   signInToApp: (username, password) => {
-    dispatch(signIn(username, password));
+    dispatch(signInAttempt(username, password));
   }
 });
 
 
 
 
-export default SignIn
+export default connect(null, mapDispatchToProps)(SignIn);
