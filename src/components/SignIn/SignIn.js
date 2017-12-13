@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import './SignIn.css';
+import { connect } from 'react-redux';
+import { Dispatch } from 'react-redux';
+import { signInAttempt } from '../../Actions';
 
 class SignIn extends Component {
   constructor() {
@@ -37,12 +40,16 @@ class SignIn extends Component {
     }
   }
 
+  submitHandler = (e) => {
+    e.preventDefault();
+    this.props.signInToApp(this.state.usernameInputVal, this.state.passwordInputVal);
+  }
+
 
   render() {
-    console.log(this.state);
     return (
       <div className="SignIn">
-        <form>
+        <form onSubmit={this.submitHandler}>
           <input 
             type="text" 
             className={this.state.usernameClass}
@@ -75,5 +82,13 @@ class SignIn extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  signInToApp: (username, password) => {
+    dispatch(signInAttempt(username, password));
+  }
+});
 
-export default SignIn
+
+
+
+export default connect(null, mapDispatchToProps)(SignIn);
