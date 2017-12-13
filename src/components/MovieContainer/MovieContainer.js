@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
-import { fetchMovieList } from '../../actions';
-const key = require('../../utilities/key');
+import { fetchMovieList } from '../../Actions';
+const key = require('../../Utils/key');
 
-class MovieCatalog extends Component {
+class MovieContainer extends Component {
   constructor() {
     super();
   }
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCatalog);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieContainer);
