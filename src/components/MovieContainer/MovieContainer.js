@@ -10,7 +10,6 @@ class MovieCatalog extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     this.props.fetchMovieList(`https://api.themoviedb.org/3/movie/now_playing?api_key=${key}`)
   }
 
@@ -18,6 +17,7 @@ class MovieCatalog extends Component {
     const movieArray = this.props.movies
     const movieCardsArray = movieArray.map( (movie) => {
       return (<MovieCard key={movie.id}
+                         poster={movie.poster_path}
                          title={movie.title} />)
     })
     return (
