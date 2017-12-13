@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import MovieCatalog from '../MovieContainer/MovieContainer';
-import SignIn from '../SignIn/SignIn';
+import { MovieContainer, SignIn } from '../../components';
 
 export default class App extends Component {
   constructor() {
@@ -11,7 +10,7 @@ export default class App extends Component {
     return (
       <div>
         <SignIn />
-        <MovieCatalog />
+        <MovieContainer />
       </div>
     )
   }
