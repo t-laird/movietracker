@@ -1,0 +1,84 @@
+.SignIn {
+  position: fixed;
+  top: calc(50% - 200px);
+  left: calc(50% - 300px);
+  display: flex;
+  width: 600px;
+  height: 250px;
+  border: 2px solid black;
+  background-color: rgba(21, 108, 238, 0.817);
+  border-radius: 9px;
+  box-shadow: 7px 7px 7px 7px darkgrey;
+  transition: 1s;
+  &:hover {
+    box-shadow: none;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    input {
+      box-sizing: border-box;
+      border: none;
+      height: 60px;
+      font-size: 25px;
+      outline: none;
+      padding: 0px 20px;
+    }
+
+    input[type="submit"] {
+      width: 90%;
+      background-color: rgb(19, 19, 19);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 1.5s;
+      &:hover {
+        background-color: rgb(232, 217, 217);
+        color: black;
+      }
+      &:focus {
+        background-color: rgb(232, 217, 217);
+        color: black;
+      }
+    }
+
+    input.signin-input {
+      width: 55%;
+      text-overflow: ellipsis;
+      transition: 1s;
+      border-radius: 5px;
+      &::placeholder {
+        color: black;
+      }
+    }
+
+    input.signin-input.focused {
+      width: 90%;
+      background-color: rgb(62, 59, 59);
+      color: white;
+      &::placeholder {
+        color: white;
+      }
+    }
+    .password-show-hide {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 51%;
+      label {
+        cursor: pointer;
+        width: 100%;
+      }
+      input {
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}
