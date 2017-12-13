@@ -21,6 +21,7 @@
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   },
+  "proxy": "http://localhost:3000",
   "devDependencies": {
     "node-sass-chokidar": "0.0.3",
     "redux-logger": "^3.0.6"
