@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
 import { fetchMovieList } from '../../Actions';
+import './MovieContainer.css';
 const key = require('../../Utils/key');
 
 class MovieContainer extends Component {
@@ -21,10 +22,9 @@ class MovieContainer extends Component {
                          title={movie.title} />)
     })
     return (
-      <div>
-        Movie Catalog
+      <section>
         {movieCardsArray}
-      </div>
+      </section>
     )
   }
 }

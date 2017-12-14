@@ -1,18 +1,19 @@
 import React from 'react';
+import './MovieCard.css'
 import { connect } from 'react-redux';
 import { toggleFavorites } from '../../Actions';
 
 const MovieCard = (props) => {
 
   return (
-    <div>
+    <article>
+      <img src={`https://image.tmdb.org/t/p/w500${props.poster}`} alt="movie poster" width="290" height="430" />
       <button onClick={(event) => {
         event.preventDefault();
         props.toggleFavorites(props.movie)
       }}>FAVORITE</button>
-      <img src={`https://image.tmdb.org/t/p/w500${props.poster}`} alt="movie poster" />
       <h1>{props.title}</h1>
-    </div>
+    </article>
   )
 }
 
