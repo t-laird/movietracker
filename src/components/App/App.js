@@ -11,7 +11,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Route path="/" component={Header} />
         <Route path="/" component={MovieContainer} />
         <Route path="/signin" component={SignIn} />
       </div>
