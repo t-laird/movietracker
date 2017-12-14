@@ -3,21 +3,21 @@ export const moviesHasErrored = (bool) => {
     type: 'MOVIES_HAS_ERRORED',
     hasErrored: bool
   };
-}
+};
 
 export const moviesIsLoading = (bool) => {
   return {
     type: 'MOVIES_IS_LOADING',
     isLoading: bool
   };
-}
+};
 
 export const moviesFetchDataSuccess = (movies) => {
   return {
     type: 'MOVIES_FETCH_DATA_SUCCESS',
     movies
     };
-}
+};
 
 export const fetchMovieList = (url) => {
   return (dispatch) => {
@@ -49,7 +49,7 @@ export const signInAttempt = (email, password) => {
       }),
     });
     
-    if (initialResponse.status > 400) {
+    if (initialResponse.status >= 400) {
       console.log('failure');
       return dispatch(signInFailure('user not found'));
     }
@@ -57,8 +57,8 @@ export const signInAttempt = (email, password) => {
     const userData = await initialResponse.json();
 
     return dispatch(signInSuccess(userData));
-  }
-}
+  };
+};
 
 
 export const signInSuccess = async (userObject) => {
@@ -73,5 +73,5 @@ export const signInFailure = (errorMessage) => {
   return {
     type: 'SIGNIN_FAILURE',
     errorMessage
-  }
+  };
 };
