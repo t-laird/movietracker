@@ -75,3 +75,9 @@ export const signInFailure = (errorMessage) => {
     errorMessage
   };
 };
+
+export const signOut = () => {
+  return {
+    type: 'SIGN_OUT'
+  }
+}
