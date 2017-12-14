@@ -103,7 +103,11 @@ export const signUpAttempt = (name, email, password) => {
       })
     });
     if (initialResponse.status > 400){
-      return dispatch(signUpFailure(initialResponse.statusText));
+      const responseError = await initialResponse.json();
+      const errorRegex = new RegExp(/.+\)=/, 'g');
+      const formatError = 'email ' + responseError.error.replace(errorRegex, '');
+
+      return dispatch(signUpFailure(formatError));
     } else {
       const newUserId = await initialResponse.json();
 
@@ -113,6 +117,7 @@ export const signUpAttempt = (name, email, password) => {
 }
 
 export const signUpFailure = (error) => {
+  console.log(error);
   return {
     type: "SIGN_UP_FAILURE",
     error

@@ -20,18 +20,38 @@ const SignIn = (state = {}, action) => {
         {}, 
         {signedIn: false}, 
         {userData: {name: '', email: '', id: ''}}, 
-        {error: errorMessage}
+        {error: 'username or password is incorrect'}
       );
     case 'SIGN_OUT':
-      return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}}, {error: false});
+      return Object.assign(
+        {}, 
+        {signedIn: false}, 
+        {userData: {name: '', email: '', id: ''}}, 
+        {error: false}
+      );
     case 'SIGN_UP_SUCCESS':
       const { newUser } = action;
-      return Object.assign({}, {signedIn: true}, {userData: {name: newUser.name, email: newUser.email, id: newUser.id}})
+      return Object.assign(
+        {}, 
+        {signedIn: true}, 
+        {userData: {name: newUser.name, email: newUser.email, id: newUser.id}},
+        {error: false}
+      );
     case 'SIGN_UP_FAILURE':
       const { error } = action;
-      return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}}, {error});
+      return Object.assign(
+        {}, 
+        {signedIn: false}, 
+        {userData: {name: '', email: '', id: ''}}, 
+        {error}
+      );
     default:
-      return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}});
+      return Object.assign(
+        {}, 
+        {signedIn: false}, 
+        {error: false},        
+        {userData: {name: '', email: '', id: ''}}
+      );
   }
 };
 
