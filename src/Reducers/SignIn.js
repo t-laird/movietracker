@@ -9,7 +9,13 @@ const SignIn = (state = {}, action) => {
       const { errorMessage } = action;
       return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}}, {error: errorMessage});
     case 'SIGN_OUT':
-      return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}});    
+      return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}});
+    case 'SIGN_UP_SUCCESS':
+      const { newUser } = action;
+      return Object.assign({}, {signedIn: true}, {userData: {name: newUser.name, email: newUser.email, id: newUser.id}})
+    case 'SIGN_UP_FAILURE':
+      const { error } = action;
+      return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}}, {error});
     default:
       return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}});
   }
