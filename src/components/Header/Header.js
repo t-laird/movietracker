@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { signOut } from '../../Actions';
 
 class Header extends Component{
   constructor() {
@@ -18,7 +19,7 @@ class Header extends Component{
     console.log(this.props);
     const signedIn = this.props.signedIn;
     const signInContent = signedIn
-      ? (<div className="sign-out"><span>Welcome, {this.props.userName}</span> <Link className="sign-in-link" to="/">Sign Out</Link></div>)
+      ? (<div className="sign-out"><span>Welcome, {this.props.userName}</span> <Link className="sign-in-link" onClick={() => this.props.signOut()} to="/">Sign Out</Link></div>)
       : <Link className="sign-in-link" to="/signin">Sign In/Sign Up</Link>;
     
     return (
@@ -37,4 +38,10 @@ const mapStateToProps = (state) => ({
   userName: state.SignIn.userData.name
 });
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = dispatch => ({
+  signOut: () => {
+    dispatch(signOut());
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
