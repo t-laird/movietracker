@@ -6,8 +6,10 @@ const SignIn = (state = {}, action) => {
       const userData = Object.assign({}, {name: dataResponse.name, email: dataResponse.email, id: dataResponse.id})
       return {signedIn: true, userData};
     case 'SIGNIN_FAILURE':
-    const { errorMessage } = action;
+      const { errorMessage } = action;
       return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}}, {error: errorMessage});
+    case 'SIGN_OUT':
+      return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}});    
     default:
       return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}});
   }
