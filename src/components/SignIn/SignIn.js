@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './SignIn.css';
 import { connect } from 'react-redux';
-import { Dispatch } from 'react-redux';
 import { signInAttempt } from '../../Actions';
+import { Link } from 'react-router-dom';
 
 class SignIn extends Component {
   constructor() {
@@ -50,6 +50,7 @@ class SignIn extends Component {
     return (
       <div className="SignIn">
         <form onSubmit={this.submitHandler}>
+          <Link to="/" className="sign-in-close">Close</Link>
           <input 
             type="text" 
             className={this.state.usernameClass}

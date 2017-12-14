@@ -17,15 +17,24 @@
     top: calc(50% - 200px);
     left: calc(50% - 300px);
     border-radius: 9px;
-    background-color: rgba(21, 108, 238, 0.817);
+    background-color: rgba(21, 108, 238, 0.857);
     width: 600px;
     height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    // width: 100%;
-    // height: 100%;
+
+    .sign-in-close {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      padding: 5px 5px 0px 0px;
+      color: white;
+      &:hover {
+        color: grey;
+      }
+    }
     input {
       box-sizing: border-box;
       border: none;
@@ -71,7 +80,7 @@
     }
 
     input.signin-input.focused {
-      width: 90%;
+      width: 80%;
       background-color: rgb(62, 59, 59);
       color: white;
       &::placeholder {
