@@ -44,10 +44,10 @@ class SignIn extends Component {
   }
 
   submitHandler = (e) => {
-    const { nameInputVal, usernameInputVal, passwordInputVal } = this.state;
     e.preventDefault();
+    const { nameInputVal, usernameInputVal, passwordInputVal } = this.state;
     if (this.state.signup) {
-      if (nameInputVal.length > 5 && usernameInputVal.length > 5 && passwordInputVal.length > 5) {
+      if (nameInputVal.length > 2 && usernameInputVal.length > 2 && passwordInputVal.length > 2) {
         this.props.signUpForApp(nameInputVal, usernameInputVal, passwordInputVal);
       }
     } else {
@@ -77,11 +77,15 @@ class SignIn extends Component {
     const signinToggle = signup ? "Sign In Instead" : "Sign Up Instead";
     const buttonClass = signup ? "up" : "in";
 
+    const signinError = this.props.userObject.error;
+
+    const errorStatement = !signinError ? null : <span className="error">{signinError}</span>
 
     return (
       <div className="SignIn">
         <form className={buttonClass} onSubmit={this.submitHandler}>
           <Link to="/" className="sign-in-close">Close</Link>
+          {errorStatement}
           {signupInput}
           <input 
             type="text" 
@@ -112,13 +116,16 @@ class SignIn extends Component {
                 name="passOption" 
                 value="text" />
           </div>
-          {/* {errorStatement} */}
           <input type="submit" value={submitText} />
         </form>
       </div>
     )
   }
 }
+
+const mapStateToProps = store => ({
+  userObject: store.SignIn
+});
 
 const mapDispatchToProps = dispatch => ({
   signInToApp: (username, password) => {
@@ -132,4 +139,4 @@ const mapDispatchToProps = dispatch => ({
 
 
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
