@@ -3,21 +3,21 @@ export const moviesHasErrored = (bool) => {
     type: 'MOVIES_HAS_ERRORED',
     hasErrored: bool
   };
-}
+};
 
 export const moviesIsLoading = (bool) => {
   return {
     type: 'MOVIES_IS_LOADING',
     isLoading: bool
   };
-}
+};
 
 export const moviesFetchDataSuccess = (movies) => {
   return {
     type: 'MOVIES_FETCH_DATA_SUCCESS',
     movies
     };
-}
+};
 
 export const fetchMovieList = (url) => {
   return (dispatch) => {
@@ -46,10 +46,10 @@ export const signInAttempt = (email, password) => {
       body: JSON.stringify({
         email,
         password
-      }),
+      })
     });
     
-    if (initialResponse.status > 400) {
+    if (initialResponse.status >= 400) {
       console.log('failure');
       return dispatch(signInFailure('user not found'));
     }
@@ -57,8 +57,8 @@ export const signInAttempt = (email, password) => {
     const userData = await initialResponse.json();
 
     return dispatch(signInSuccess(userData));
-  }
-}
+  };
+};
 
 
 export const signInSuccess = async (userObject) => {
@@ -73,5 +73,55 @@ export const signInFailure = (errorMessage) => {
   return {
     type: 'SIGNIN_FAILURE',
     errorMessage
-  }
+  };
 };
+
+export const signOut = () => {
+  return {
+    type: 'SIGN_OUT'
+  }
+}
+
+export const signUpAttempt = (name, email, password) => {
+  return async (dispatch) => {
+    const initialResponse = await fetch('/api/users/new', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name, email, password
+      })
+    });
+    if (initialResponse.status > 400){
+      return dispatch(signUpFailure(initialResponse.statusText));
+    } else {
+      const newUserId = await initialResponse.json();
+
+      return dispatch(signUpSuccess(newUserId.id));
+    }
+  }
+}
+
+export const signUpFailure = (error) => {
+  return {
+    type: "SIGN_UP_FAILURE",
+    error
+  }
+}
+
+export const signUpSuccess = async (id) => {
+  const allUsers = await fetch('/api/users', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const userData = await allUsers.json();
+  const newUser = userData.data.find( user => user.id === id);
+  console.log(newUser);
+  return {
+    type: "SIGN_UP_SUCCESS",
+    newUser
+  }
+}
