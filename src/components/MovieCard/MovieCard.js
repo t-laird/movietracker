@@ -1,11 +1,12 @@
 import React from 'react';
+import './MovieCard.css'
 
 const MovieCard = (props) => {
   return (
-    <div>
-      <img src={`https://image.tmdb.org/t/p/w500${props.poster}`} alt="movie poster" />
+    <article>
+      <img src={`https://image.tmdb.org/t/p/w500${props.poster}`} alt="movie poster" width="290" height="430" />
       <h1>{props.title}</h1>
-    </div>
+    </article>
   )
 }
 
