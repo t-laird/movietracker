@@ -1,18 +1,21 @@
 import React, { Component } from 'react'
 import './SignIn.css';
 import { connect } from 'react-redux';
-import { signInAttempt } from '../../Actions';
+import { signInAttempt, signUpAttempt } from '../../Actions';
 import { Link } from 'react-router-dom';
 
 class SignIn extends Component {
   constructor() {
     super();
     this.state = {
+      nameInputVal: '',
       usernameInputVal: '',
       passwordInputVal: '',
+      nameClass: 'signin-input',
       usernameClass: 'signin-input',
       passwordClass: 'signin-input',
-      passwordDisplay: 'password'
+      passwordDisplay: 'password',
+      signup: false
     };
   }
 
@@ -41,16 +44,44 @@ class SignIn extends Component {
   }
 
   submitHandler = (e) => {
+    const { nameInputVal, usernameInputVal, passwordInputVal } = this.state;
     e.preventDefault();
-    this.props.signInToApp(this.state.usernameInputVal, this.state.passwordInputVal);
+    if (this.state.signup) {
+      if (nameInputVal.length > 5 && usernameInputVal.length > 5 && passwordInputVal.length > 5) {
+        this.props.signUpForApp(nameInputVal, usernameInputVal, passwordInputVal);
+      }
+    } else {
+      this.props.signInToApp(usernameInputVal, passwordInputVal);
+    }
+  }
+
+  changeSignInType = () => {
+    const signup = this.state.signup ? false : true;
+    this.setState({ signup });
   }
 
 
   render() {
+    const signup = this.state.signup;
+    const signupInput = signup ?
+      <input
+        type="text"
+        className={this.state.nameClass}
+        value={this.state.nameInputVal}
+        onFocus={() => this.inputFocus('name', 'signin-input focused')}
+        onBlur={() => this.inputFocus('name', 'signin-input')}
+        onChange={(e) => this.handleChange(e, 'nameInputVal')}
+        placeholder="Name" /> : null;
+
+    const submitText = signup ? "Sign Up!" : "Sign In!";
+    const signinToggle = signup ? "Sign In Instead" : "Sign Up Instead";
+    const buttonClass = signup ? "up" : "in";
+
     return (
       <div className="SignIn">
-        <form onSubmit={this.submitHandler}>
+        <form className={buttonClass} onSubmit={this.submitHandler}>
           <Link to="/" className="sign-in-close">Close</Link>
+          {signupInput}
           <input 
             type="text" 
             className={this.state.usernameClass}
@@ -67,7 +98,10 @@ class SignIn extends Component {
             onBlur={() => this.inputFocus('password', 'signin-input')}
             onChange={(e) => this.handleChange(e, 'passwordInputVal')}            
             placeholder="Password (case sensitive)" />
-          <span className="password-show-hide">
+          <div className="password-show-hide">
+            <div className={`type-toggle ${buttonClass}`}>
+              <button onClick={this.changeSignInType} className={buttonClass}>{signinToggle}</button>
+            </div>
             <label htmlFor="password-option">Show Password?</label>
               <input 
                 id="password-option" 
@@ -75,8 +109,9 @@ class SignIn extends Component {
                 tabIndex="-1"
                 type="checkbox" 
                 name="passOption" 
-                value="text" /></span>
-          <input type="submit" value="Sign In" />
+                value="text" />
+          </div>
+          <input type="submit" value={submitText} />
         </form>
       </div>
     )
@@ -86,6 +121,9 @@ class SignIn extends Component {
 const mapDispatchToProps = dispatch => ({
   signInToApp: (username, password) => {
     dispatch(signInAttempt(username, password));
+  },
+  signUpForApp: (name, username, password) => {
+    dispatch(signUpAttempt(name, username, password));
   }
 });
 
