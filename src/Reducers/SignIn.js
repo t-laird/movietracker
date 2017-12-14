@@ -7,9 +7,9 @@ const SignIn = (state = {}, action) => {
       return {signedIn: true, userData};
     case 'SIGNIN_FAILURE':
     const { errorMessage } = action;
-      return {signedIn: false, error: errorMessage};
+      return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}}, {error: errorMessage});
     default:
-      return {signedIn: false};
+      return Object.assign({}, {signedIn: false}, {userData: {name: '', email: '', id: ''}});
   }
 };
 
