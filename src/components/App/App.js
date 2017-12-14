@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { MovieContainer, SignIn } from '../../components';
+import { MovieContainer, SignIn, Header} from '../../components';
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
 
 export default class App extends Component {
   constructor() {
@@ -8,9 +10,10 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
-        <SignIn />
-        <MovieContainer />
+      <div className="App">
+        <Header />
+        <Route path="/" component={MovieContainer} />
+        <Route path="/signin" component={SignIn} />
       </div>
     )
   }
