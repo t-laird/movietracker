@@ -77,6 +77,7 @@ class SignIn extends Component {
     const signinToggle = signup ? "Sign In Instead" : "Sign Up Instead";
     const buttonClass = signup ? "up" : "in";
 
+
     return (
       <div className="SignIn">
         <form className={buttonClass} onSubmit={this.submitHandler}>
@@ -111,6 +112,7 @@ class SignIn extends Component {
                 name="passOption" 
                 value="text" />
           </div>
+          {/* {errorStatement} */}
           <input type="submit" value={submitText} />
         </form>
       </div>
