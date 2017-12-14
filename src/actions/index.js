@@ -48,6 +48,7 @@ export const signInAttempt = (email, password) => {
         password
       })
     });
+
     
     if (initialResponse.status >= 400) {
       console.log('failure');
@@ -75,6 +76,14 @@ export const signInFailure = (errorMessage) => {
     errorMessage
   };
 };
+
+export const toggleFavorites = (movie) => {
+  console.log('toggleFavorites', movie)
+  return{
+    type: 'TOGGLE_FAVORITES',
+    movie
+  }
+}
 
 export const signOut = () => {
   return {
