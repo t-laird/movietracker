@@ -1,53 +1,84 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './MovieCard.css'
 import { connect } from 'react-redux';
 import { toggleFavorites, addFavorite, removeFavorite } from '../../Actions';
 
-const MovieCard = (props) => {
-  const handleFavorite = (movie) => {
+class MovieCard extends Component{
+  constructor() {
+    super();
+    this.state = {
+      cardFlipped: false
+    };
+  }
+  
+  
+  handleFavorite = (movie) => {
     if (movie.isFavorite === false) {
-      props.addFavorite(movie, props.user.id);
+      this.props.addFavorite(movie, this.props.user.id);
     } else {
-      props.removeFavorite(props.user.id, movie.movie_id);
+      this.props.removeFavorite(this.props.user.id, movie.movie_id);
     }
-    props.toggleFavorites(movie);
+    this.props.toggleFavorites(movie);
   };
 
-  const checkFavorites = (movie) => {
-    if (!props.user.name) {
+  checkFavorites = (movie) => {
+    if (!this.props.user.name) {
       alert('You must sign-in to add a favorite');
     } else {
-      handleFavorite(movie)
+      this.handleFavorite(movie)
     }
+  };
+
+  flipCard = () => {
+    const cardFlipped = this.state.cardFlipped ? false : true;
+    this.setState({
+      cardFlipped
+    });
+  };
+
+
+
+
+
+render() {
+  console.log('rerender');
+  const flipClass = this.state.cardFlipped ? 'flip' : '';
+
+    return (
+      <div className={`outer-card-container ${flipClass}`}>
+        <div className="inner-card-container">
+          <article class="card-front face">
+            <img src={`https://image.tmdb.org/t/p/w500${this.props.poster}`} alt="movie poster" />
+            <div className="bottom-container">
+              <button onClick={(event) => {
+                event.preventDefault();
+                this.checkFavorites(this.props.movie)
+              }}>Favorite<i className="icon-star"></i></button>
+              <h1>{this.props.title}</h1>
+              <button onClick={() => {this.flipCard()}}>More Info<i className="icon-exchange"></i></button>
+            </div>
+          </article>
+          <article className="card-back face">
+            <div className="top-section">
+              <div className="top-row">
+                <h1>{this.props.title}</h1>   
+                <p className="rating">{this.props.rating}</p> 
+              </div>
+              <p>{this.props.overview}</p>
+            </div>
+            <div className="bottom-container">
+              <button onClick={(event) => {
+                event.preventDefault();
+                this.checkFavorites(this.props.movie)
+              }}>Favorite<i className="icon-star"></i></button>
+              <h1>{this.props.title}</h1>
+              <button onClick={() => {this.flipCard()}}>More Info<i className="icon-exchange"></i></button>
+            </div>
+          </article>
+        </div>
+      </div> 
+    )
   }
-
-
-
-  return (
-    <div className="outer-card-container">
-      <div className="inner-card-container">
-        <article class="card-front face">
-          <img src={`https://image.tmdb.org/t/p/w500${props.poster}`} alt="movie poster" />
-          {/* <div className="bottom-container">
-            <button onClick={(event) => {
-              event.preventDefault();
-              checkFavorites(props.movie)
-            }} />
-            <h1>{props.title}</h1>
-            <button>More Info<i className="icon-exchange"></i></button>
-          </div> */}
-        </article>
-        <article class="card-back face">
-          <h1>{props.title}</h1>   
-          <p className="rating">{props.rating}</p>     
-          <p>{props.overview}</p>
-          <button onClick={(event) => {
-            props.checkFavorites(props.movie)
-          }}>FAVORITE<i className="icon-star"></i></button>
-        </article>
-      </div>
-    </div> 
-  )
 }
 
 const mapStateToProps = (state) => {
