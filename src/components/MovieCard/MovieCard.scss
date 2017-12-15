@@ -1,95 +1,171 @@
+@import '../../movietrackericons/css/movietrackericons.css';
+
 .outer-card-container {
    margin: 10px;
    width: 290px;
-   height: 430px;
+   height: 500px;
    perspective: 1000;
    z-index: 1;
+  //  &:hover {
+  //    .inner-card-container {
+  //      transform: rotateY(180deg);
+  //      box-shadow: -4px 4px 4px rgba(0,0,0,0.2);    
+       
+  //     }  
+  //   }
+    
+    .inner-card-container {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: all 0.8s linear;
+      .face {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          display: flex;
+          flex-wrap: wrap;
+          box-shadow: 2px 2px 2px 2px rgb(55, 55, 55);
+          border-radius: 10px;
+          border: 1px solid black;
+          img {
+            width: 290px;
+            height: 430px;
+            border-radius: 10px 10px 0px 0px;
+          
+          }
+          .bottom-container {
+            display: flex;
+            justify-content: space-between;
+            height: 70px;
+            background-color: white;
+            width: 100%;
+            border-top: 1px solid black;
+            border-radius: 0px 0px 10px 10px;
+        
+            h1 {
+              font-size: 25px;
+              margin: 0px;
+              height: 70px;
+              width: 150px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+            }
+        
+            button{
+              height: 70px;
+              width: 60px;
+              border: none;
+              cursor: pointer;
+              font-size: 18px;
+              padding: 0px;
+              &:hover {
+                background-color: black;
+                color: #00AEFF;
+
+              }
+              i {
+                font-size: 30px;
+              }
+              &:nth-child(1) {
+                border-right: 1px solid black;
+                border-radius: 0px 0px 0px 10px;
+              }
+              &:nth-child(3) {
+                border-left: 1px solid black;
+                border-radius: 0px 0px 10px 0px;
+              }
+            }
+          }
+      }
+      .face.card-back {
+          display: flex;
+          box-sizing: border-box;
+          transform: rotateY(180deg);
+          height: 500px;
+          width: 290px;
+          background-color: darkgrey;;
+          .top-section {
+            height: 430px;
+            .top-row {
+              display: flex;
+              justify-content: space-between;
+              background-color: #00AEFF;
+              border-radius: 10px 10px 0px 0px;
+              height: 100px;
+              h1 {
+                width: 100%;
+                font-size: 30px;
+                margin: 0px;
+                padding: 10px;
+              }
+              p {
+                font-size: 50px;
+                margin: 0px;
+                padding-right: 10px;
+              }
+            }
+            p {
+              font-size: 20px;
+              padding: 10px;
+              margin: 0px;
+            }
+          }
+          .bottom-container {
+            display: flex;
+            justify-content: space-between;
+            height: 70px;
+            background-color: white;
+            width: 100%;
+            border-radius: 0px 0px 10px 10px;
+            border-top: 1px solid black;
+            h1 {
+              font-size: 25px;
+              margin: 0px;
+              height: 70px;
+              width: 150px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+            }
+        
+            button{
+              height: 70px;
+              width: 60px;
+              border: none;
+              cursor: pointer;
+              font-size: 18px;
+              padding: 0px;
+              &:hover {
+                background-color: black;
+                color: #00AEFF;
+
+              }
+              i {
+                font-size: 30px;
+              }
+              &:nth-child(1) {
+                border-right: 1px solid black;
+                border-radius: 0px 0px 0px 10px;
+              }
+              &:nth-child(3) {
+                border-left: 1px solid black;
+                border-radius: 0px 0px 10px 0px;
+              }
+            }
+          }
+      }
+    }
 }
 
-.inner-card-container {
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: all 0.8s linear;
-}
-
-.outer-card-container:hover 
-.inner-card-container {
+.outer-card-container.flip {
+  .inner-card-container {
     transform: rotateY(180deg);
     box-shadow: -4px 4px 4px rgba(0,0,0,0.2);    
-}
-
-.face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-}
-
-.face.card-back {
-    display: block;
-    box-sizing: border-box;
-    transform: rotateY(180deg);
-    padding: 10px;
-    background-color: maroon;
-}
-// @import '../../movietrackericons/css/movietrackericons.css';
-
-// article {
-//   width: 290px;
-//   height: 500px;
-//   margin: 10px;
-//   box-shadow: 2px 2px 2px 2px rgb(55, 55, 55);
-//   background-color: white;
-//   border-radius: 10px;
-//   border: 1px solid black;
-//   display: flex;
-//   flex-wrap: wrap;
-
-//   .bottom-container {
-//     display: flex;
-//     justify-content: space-between;
-//     height: 70px;
-//     width: 100%;
-
-//     h1 {
-//       font-size: 25px;
-//       margin: 0px;
-//       height: 70px;
-//       width: 150px;
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//       text-align: center;
-//     }
-
-//     button{
-//       height: 70px;
-//       width: 60px;
-//       border: none;
-//       cursor: pointer;
-//       font-size: 18px;
-//       padding: 0px;
-//       i {
-//         font-size: 30px;
-//       }
-//       &:nth-child(1) {
-//         border-right: 1px solid black;
-//         border-radius: 0px 0px 0px 10px;
-//       }
-//       &:nth-child(3) {
-//         border-left: 1px solid black;
-//         border-radius: 0px 0px 10px 0px;
-//         // line-height: 20px;
-//       }
-//     }
-//   }
-// }
-
-// img {
-//     object-fit: cover;
-//     border-radius: 10px 10px 0px 0px;
-//     width: 290px;
-//     height: 430px;
-// >>>>>>> master
-//}
+    
+   }  
+ }
