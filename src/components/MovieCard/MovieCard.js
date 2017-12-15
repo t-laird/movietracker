@@ -21,18 +21,32 @@ const MovieCard = (props) => {
     }
   }
 
+
+
   return (
-    <article>
-      <img src={`https://image.tmdb.org/t/p/w500${props.poster}`} alt="movie poster" />
-      <div className="bottom-container">
-      <button onClick={(event) => {
-        event.preventDefault();
-        checkFavorites(props.movie)
-      }}>FAVORITE<i className="icon-star"></i></button>
-        <h1>{props.title}</h1>
-      <button>More Info<i className="icon-exchange"></i></button>
+    <div className="outer-card-container">
+      <div className="inner-card-container">
+        <article class="card-front face">
+          <img src={`https://image.tmdb.org/t/p/w500${props.poster}`} alt="movie poster" />
+          <div className="bottom-container">
+            <button onClick={(event) => {
+              event.preventDefault();
+              checkFavorites(props.movie)
+              <h1>{props.title}</h1>
+            <button>More Info<i className="icon-exchange"></i></button>
+          </div>
+        </article>
+        <article class="card-back face">
+          <h1>{props.title}</h1>   
+          <p className="rating">{props.rating}</p>     
+          <p>{props.overview}</p>
+          <button onClick={(event) => {
+            checkFavorites(props.movie)
+            props.toggleFavorites(props.movie)
+          }}>FAVORITE<i className="icon-star"></i></button>
+        </article>
       </div>
-    </article>
+    </div> 
   )
 }
 

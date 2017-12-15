@@ -21,6 +21,8 @@ class MovieContainer extends Component {
       return (<MovieCard key={movie.id}
                          poster={movie.poster_path}
                          title={movie.title}
+                         overview={movie.overview}
+                         rating={movie.vote_average}
                          movie={movie}/>)
     })
     return (
