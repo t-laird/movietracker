@@ -24,6 +24,12 @@ package-lock.json
 
 *.css
 !index.css
+!animation.css
+!movietrackericons-codes.css
+!movietrackericons-embedded.css
+!movietrackericons-ie7-codes.css
+!movietrackericons-ie7.css
+!movietrackericons.css
 
 demo.html
 
