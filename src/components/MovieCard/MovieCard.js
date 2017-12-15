@@ -23,12 +23,15 @@ const MovieCard = (props) => {
 
   return (
     <article>
-      <img src={`https://image.tmdb.org/t/p/w500${props.poster}`} alt="movie poster" width="290" height="430" />
+      <img src={`https://image.tmdb.org/t/p/w500${props.poster}`} alt="movie poster" />
+      <div className="bottom-container">
       <button onClick={(event) => {
         event.preventDefault();
         checkFavorites(props.movie)
-      }}>FAVORITE</button>
-      <h1>{props.title}</h1>
+      }}>FAVORITE<i className="icon-star"></i></button>
+        <h1>{props.title}</h1>
+      <button>More Info<i className="icon-exchange"></i></button>
+      </div>
     </article>
   )
 }

@@ -1,0 +1,118 @@
+{
+  "name": "movietrackericons",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "b392c847bf41826598f12c02be842253",
+      "css": "star",
+      "code": 59392,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "ee382df412dfdf65191b52ae33160abc",
+      "css": "star-empty",
+      "code": 59393,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "922ab2cb66943a83de969990289ef1dc",
+      "css": "docs",
+      "code": 59394,
+      "src": "entypo"
+    },
+    {
+      "uid": "2d76f2c8d13be40694ecadfea7fb83c3",
+      "css": "logout",
+      "code": 59395,
+      "src": "entypo"
+    },
+    {
+      "uid": "ce5e29aa5208417700e7f7012a236c00",
+      "css": "undo",
+      "code": 59396,
+      "src": "iconic"
+    },
+    {
+      "uid": "f3ebd6751c15a280af5cc5f4a764187d",
+      "css": "arrow-curved",
+      "code": 59397,
+      "src": "iconic"
+    },
+    {
+      "uid": "5d2d07f112b8de19f2c0dbfec3e42c05",
+      "css": "spin5",
+      "code": 59448,
+      "src": "fontelico"
+    },
+    {
+      "uid": "c1f1975c885aa9f3dad7810c53b82074",
+      "css": "lock",
+      "code": 59398,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "657ab647f6248a6b57a5b893beaf35a9",
+      "css": "lock-open",
+      "code": 59399,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "6020aff067fc3c119cdd75daa5249220",
+      "css": "exchange",
+      "code": 61676,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "3a3f65b92c9b2fcbb3a8dcd0d42ee806",
+      "css": "resize-full",
+      "code": 59400,
+      "src": "entypo"
+    },
+    {
+      "uid": "108c8ac13badc00ce66da014436e6eb1",
+      "css": "resize-small",
+      "code": 59401,
+      "src": "entypo"
+    },
+    {
+      "uid": "0c71ab36fb4e0923e3cf8d6beabe1851",
+      "css": "check-outline",
+      "code": 59402,
+      "src": "typicons"
+    },
+    {
+      "uid": "27531040afb54140f4d449321c9cec3a",
+      "css": "check",
+      "code": 59403,
+      "src": "typicons"
+    },
+    {
+      "uid": "1400d5103edd2fa6d2d61688fee79a5a",
+      "css": "ok-squared",
+      "code": 61770,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "4b900d04e8ab8c82f080c1cfbac5772c",
+      "css": "check-empty",
+      "code": 61590,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "67a9d2e5512b8aa812eff7da6d36bffc",
+      "css": "ok-circled",
+      "code": 59404,
+      "src": "elusive"
+    },
+    {
+      "uid": "56b0141d7bbb0717fc6246ea145bc0bd",
+      "css": "ok-circled2",
+      "code": 59405,
+      "src": "elusive"
+    }
+  ]
+}

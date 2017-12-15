@@ -2,7 +2,7 @@
   height: 100px;
   width: 100%;
   display: flex;
-  background: rgb(9, 23, 106);
+  background: rgb(171, 12, 12);
   align-items: center;
   justify-content: center;
 
@@ -30,11 +30,13 @@
         width: 100%;
         height: 50%;
         text-align: right;
+        font-size: 26px;        
       }
       .sign-in-link {
         height: 50%;
         width: 100%;
         text-align: right;
+        font-size: 26px;
         padding-left: 0px;
         margin-top: 10px;
       }
@@ -47,6 +49,7 @@
     .sign-in-link {
       padding-left: 10px;
       color: white;
+      font-size: 26px;      
       &:hover {
         color: grey;
       }

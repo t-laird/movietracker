@@ -98,7 +98,7 @@ export const signUpAttempt = (name, email, password) => {
     if (initialResponse.status > 400){
       const responseError = await initialResponse.json();
       const errorRegex = new RegExp(/.+\)=/, 'g');
-      const formatError = 'email ' + responseError.error.replace(errorRegex, '');
+      const formatError = responseError.error.replace(errorRegex, '');
 
       return dispatch(signUpFailure(formatError));
     } else {
