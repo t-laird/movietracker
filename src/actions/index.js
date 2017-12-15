@@ -63,11 +63,13 @@ export const signInAttempt = (email, password) => {
 
 
 export const signInSuccess = async (userObject) => {
-
-  return {
-    type: 'SIGNIN_SUCCESS',
-    userObject
-  };
+  return dispatch => {
+    dispatch(updateFavorites(userObject.data.id));
+    return {
+      type: 'SIGNIN_SUCCESS',
+      userObject
+    };    
+  }
 };
 
 export const signInFailure = (errorMessage) => {
@@ -160,9 +162,12 @@ export const fetchFavorites = (id) => {
 }
 
 export const addFavorite = (movie, id) => {
-  return (dispatch) => {
-    fetch('/api/users/favorites/new', {
+  return async (dispatch) => {
+    const submitFavorite = await fetch('/api/users/favorites/new', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ movie_id: movie.id,
                               user_id: id,
                               title: movie.title,
@@ -171,19 +176,34 @@ export const addFavorite = (movie, id) => {
                               vote_average: movie.vote_average,
                               overview: movie.overview })
     })
-    .then(result => result.json());
+    const favoriteAdded = await submitFavorite.json()
+    return dispatch(updateFavorites(id))
   };
 };
 
-export const removeFavorite = (userId, movieId) => {
-  return (dispatch) => {
-    fetch('/api/users/${userId}/favorites/${movieId}', {
+export const removeFavorite = (movieId, userId) => {
+  return async (dispatch) => {
+    const deleteFavorite = await fetch(`/api/users/${userId}/favorites/${movieId}`, {
       method: 'DELETE',
-      body: JSON.stringify({user_id: userId, movie_id: movieId}),
+      body: JSON.stringify({movie_id: movieId, user_id: userId}),
       headers: {
         'Content-Type': 'application/json'
       }
-      .then(response => response.json())
     })
+    const deleteSuccess = await deleteFavorite.json()
+    return dispatch(updateFavorites(userId))
+    console.log(deleteSuccess);
+  }
+}
+
+export const updateFavorites = async (userId) => {
+
+    const updateFavorites = await fetch(`/api/users/${userId}/favorites`)
+    const initialResponse = await updateFavorites.json()
+    const favoritesData = await initialResponse.data
+    return {
+      type: 'UPDATE_FAVORITES',
+      favoritesData
+
   }
 }

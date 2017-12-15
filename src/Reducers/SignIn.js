@@ -1,14 +1,21 @@
-const SignIn = (state = {}, action) => {
+const defaultState = 
+        Object.assign(
+        {},
+        {signedIn: false},
+        {error: false},
+        {userData: {name: '', email: '', id: ''}})
+
+const SignIn = (state = defaultState, action) => {
   switch(action.type) {
     case 'SIGNIN_SUCCESS':
       const { userObject } = action;
       const dataResponse = userObject.data;
       const userData = Object.assign(
-        {}, 
-        {signedIn: true}, 
+        {},
+        {signedIn: true},
         {
-          name: dataResponse.name, 
-          email: dataResponse.email, 
+          name: dataResponse.name,
+          email: dataResponse.email,
           id: dataResponse.id
         },
         {error: false}
@@ -17,43 +24,37 @@ const SignIn = (state = {}, action) => {
     case 'SIGNIN_FAILURE':
       const { errorMessage } = action;
       return Object.assign(
-        {}, 
-        {signedIn: false}, 
-        {userData: {name: '', email: '', id: ''}}, 
+        {},
+        {signedIn: false},
+        {userData: {name: '', email: '', id: ''}},
         {error: 'username or password is incorrect'}
       );
     case 'SIGN_OUT':
       return Object.assign(
-        {}, 
-        {signedIn: false}, 
-        {userData: {name: '', email: '', id: ''}}, 
+        {},
+        {signedIn: false},
+        {userData: {name: '', email: '', id: ''}},
         {error: false}
       );
     case 'SIGN_UP_SUCCESS':
       const { newUser } = action;
       return Object.assign(
-        {}, 
-        {signedIn: true}, 
+        {},
+        {signedIn: true},
         {userData: {name: newUser.name, email: newUser.email, id: newUser.id}},
         {error: false}
       );
     case 'SIGN_UP_FAILURE':
       const { error } = action;
       return Object.assign(
-        {}, 
-        {signedIn: false}, 
-        {userData: {name: '', email: '', id: ''}}, 
+        {},
+        {signedIn: false},
+        {userData: {name: '', email: '', id: ''}},
         {error}
       );
     default:
-      return Object.assign(
-        {}, 
-        {signedIn: false}, 
-        {error: false},        
-        {userData: {name: '', email: '', id: ''}}
-      );
+      return state
   }
 };
 
 export default SignIn;
-
