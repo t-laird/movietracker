@@ -13,14 +13,15 @@ class MovieCard extends Component{
 
 
   handleFavorite = (movie) => {
-    const currentFavorites = new Set([...this.props.favorites]);
-    const isFavorite = currentFavorites.has(movie);
-    if (isFavorite === false) {
+    const currentFavorites = this.props.favorites;
+    const isFavorite = currentFavorites.find( movieId => {
+      return movieId.title=== movie.title;
+    });
+    if (!isFavorite) {
       this.props.addFavorite(movie, this.props.user.userData.id);
     } else {
       this.props.removeFavorite(movie.id, this.props.user.userData.id);
     }
-    // this.props.toggleFavorites(movie);
   };
 
   checkFavorites = (movie) => {
