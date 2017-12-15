@@ -19,7 +19,9 @@ class MovieContainer extends Component {
     const movieCardsArray = movieArray.map( (movie) => {
       return (<MovieCard key={movie.id}
                          poster={movie.poster_path}
-                         title={movie.title} />)
+                         title={movie.title}
+                         overview={movie.overview}
+                         rating={movie.vote_average} />)
     })
     return (
       <section>
