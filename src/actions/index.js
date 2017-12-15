@@ -140,6 +140,18 @@ export const toggleFavorites = (movie) => {
   }
 }
 
+export const fetchFavorites = (id) => {
+  return (dispatch) => {
+    fetch(`/api/users/${id}/favorites`)
+     .then(response => response.json())
+     .then(favObject => {
+       favObject.map(favorite => {
+         dispatch(toggleFavorites(favorite))
+       })
+     })
+  }
+}
+
 export const addFavorite = (movie, id) => {
   return (dispatch) => {
     fetch('/api/users/favorites/new', {
@@ -155,3 +167,16 @@ export const addFavorite = (movie, id) => {
     .then(result => result.json());
   };
 };
+
+export const removeFavorite = (userId, movieId) => {
+  return (dispatch) => {
+    fetch('/api/users/${userId}/favorites/${movieId}', {
+      method: 'DELETE',
+      body: JSON.stringify({user_id: userId, movie_id: movieId}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+      .then(response => response.json())
+    })
+  }
+}
