@@ -1,20 +1,43 @@
 import React from 'react';
 import './MovieCard.css'
 import { connect } from 'react-redux';
-import { toggleFavorites } from '../../Actions';
+import { toggleFavorites, addFavorite, removeFavorite } from '../../Actions';
 
 const MovieCard = (props) => {
+  const handleFavorite = (movie) => {
+    if (movie.isFavorite === false) {
+      props.addFavorite(movie, props.user.id);
+    } else {
+      props.removeFavorite(props.user.id, movie.movie_id);
+    }
+    props.toggleFavorites(movie);
+  };
+
+  const checkFavorites = (movie) => {
+    if (!props.user.name) {
+      alert('You must sign-in to add a favorite');
+    } else {
+      handleFavorite(movie)
+    }
+  }
 
   return (
     <article>
       <img src={`https://image.tmdb.org/t/p/w500${props.poster}`} alt="movie poster" width="290" height="430" />
       <button onClick={(event) => {
         event.preventDefault();
-        props.toggleFavorites(props.movie)
+        checkFavorites(props.movie)
       }}>FAVORITE</button>
       <h1>{props.title}</h1>
     </article>
   )
+}
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    favorites: state.favorites
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -23,4 +46,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(MovieCard);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

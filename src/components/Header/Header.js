@@ -16,12 +16,11 @@ class Header extends Component{
   }
 
   render() {
-    console.log(this.props);
     const signedIn = this.props.signedIn;
     const signInContent = signedIn
       ? (<div className="sign-out"><span>Welcome, {this.props.userName}</span> <Link className="sign-in-link" onClick={() => this.props.signOut()} to="/">Sign Out</Link></div>)
       : <Link className="sign-in-link" to="/signin">Sign In/Sign Up</Link>;
-    
+
     return (
       <div className="Header">
         <h1>Movie Tracker</h1>

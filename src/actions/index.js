@@ -49,7 +49,7 @@ export const signInAttempt = (email, password) => {
       })
     });
 
-    
+
     if (initialResponse.status >= 400) {
       console.log('failure');
       return dispatch(signInFailure('user not found'));
@@ -77,13 +77,6 @@ export const signInFailure = (errorMessage) => {
   };
 };
 
-export const toggleFavorites = (movie) => {
-  console.log('toggleFavorites', movie)
-  return{
-    type: 'TOGGLE_FAVORITES',
-    movie
-  }
-}
 
 export const signOut = () => {
   return {
@@ -139,3 +132,26 @@ export const signUpSuccess = async (id) => {
     newUser
   }
 }
+
+export const toggleFavorites = (movie) => {
+  return{
+    type: 'TOGGLE_FAVORITES',
+    movie
+  }
+}
+
+export const addFavorite = (movie, id) => {
+  return (dispatch) => {
+    fetch('/api/users/favorites/new', {
+      method: 'POST',
+      body: JSON.stringify({ movie_id: movie.id,
+                              user_id: id,
+                              title: movie.title,
+                              poster_path: movie.poster_path,
+                              release_date: movie.release_date,
+                              vote_average: movie.vote_average,
+                              overview: movie.overview })
+    })
+    .then(result => result.json());
+  };
+};
