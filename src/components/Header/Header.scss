@@ -12,6 +12,18 @@
     font-size: 50px;
   }
 
+  h2 {
+    position: absolute;
+    padding-left: 8px;
+    left: 2px;
+    width: 180px;
+    display: flex;
+    justify-content: flex-start;
+    a {
+      color: white;
+    }
+  }
+
   .sign-in{
     position: absolute;
     padding-right: 8px;
