@@ -105,7 +105,7 @@ class SignIn extends Component {
             placeholder="Password (case sensitive)" />
           <div className="password-show-hide">
             <div className={`type-toggle ${buttonClass}`}>
-              <button onClick={this.changeSignInType} className={buttonClass}>{signinToggle}</button>
+              <button tabIndex="-1" onClick={this.changeSignInType} className={buttonClass}>{signinToggle}</button>
             </div>
             <label htmlFor="password-option">Show Password?</label>
               <input 
