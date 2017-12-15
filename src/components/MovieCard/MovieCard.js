@@ -10,19 +10,21 @@ class MovieCard extends Component{
       cardFlipped: false
     };
   }
-  
-  
+
+
   handleFavorite = (movie) => {
-    if (movie.isFavorite === false) {
-      this.props.addFavorite(movie, this.props.user.id);
+    const currentFavorites = new Set([...this.props.favorites]);
+    const isFavorite = currentFavorites.has(movie);
+    if (isFavorite === false) {
+      this.props.addFavorite(movie, this.props.user.userData.id);
     } else {
-      this.props.removeFavorite(this.props.user.id, movie.movie_id);
+      this.props.removeFavorite(movie.id, this.props.user.userData.id);
     }
-    this.props.toggleFavorites(movie);
+    // this.props.toggleFavorites(movie);
   };
 
   checkFavorites = (movie) => {
-    if (!this.props.user.name) {
+    if (!this.props.user.signedIn) {
       alert('You must sign-in to add a favorite');
     } else {
       this.handleFavorite(movie)
@@ -47,7 +49,7 @@ render() {
     return (
       <div className={`outer-card-container ${flipClass}`}>
         <div className="inner-card-container">
-          <article class="card-front face">
+          <article className="card-front face">
             <img src={`https://image.tmdb.org/t/p/w500${this.props.poster}`} alt="movie poster" />
             <div className="bottom-container">
               <button onClick={(event) => {
@@ -61,8 +63,8 @@ render() {
           <article className="card-back face">
             <div className="top-section">
               <div className="top-row">
-                <h1>{this.props.title}</h1>   
-                <p className="rating">{this.props.rating}</p> 
+                <h1>{this.props.title}</h1>
+                <p className="rating">{this.props.rating}</p>
               </div>
               <p>{this.props.overview}</p>
             </div>
@@ -76,14 +78,14 @@ render() {
             </div>
           </article>
         </div>
-      </div> 
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.SignIn,
     favorites: state.favorites
   }
 }
