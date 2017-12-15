@@ -49,7 +49,7 @@ export const signInAttempt = (email, password) => {
       })
     });
 
-    
+
     if (initialResponse.status >= 400) {
       console.log('failure');
       return dispatch(signInFailure('user not found'));
@@ -77,13 +77,6 @@ export const signInFailure = (errorMessage) => {
   };
 };
 
-export const toggleFavorites = (movie) => {
-  console.log('toggleFavorites', movie)
-  return{
-    type: 'TOGGLE_FAVORITES',
-    movie
-  }
-}
 
 export const signOut = () => {
   return {
@@ -137,5 +130,60 @@ export const signUpSuccess = async (id) => {
   return {
     type: "SIGN_UP_SUCCESS",
     newUser
+  }
+}
+
+export const toggleFavorites = (movie) => {
+  return{
+    type: 'TOGGLE_FAVORITES',
+    movie
+  }
+}
+
+export const showFavorites = (bool) => {
+  return {
+    type: 'USER_FAVORITES',
+    shouldShowFavorites: bool
+  }
+}
+
+export const fetchFavorites = (id) => {
+  return (dispatch) => {
+    fetch(`/api/users/${id}/favorites`)
+     .then(response => response.json())
+     .then(favObject => {
+       favObject.map(favorite => {
+         dispatch(toggleFavorites(favorite))
+       })
+     })
+  }
+}
+
+export const addFavorite = (movie, id) => {
+  return (dispatch) => {
+    fetch('/api/users/favorites/new', {
+      method: 'POST',
+      body: JSON.stringify({ movie_id: movie.id,
+                              user_id: id,
+                              title: movie.title,
+                              poster_path: movie.poster_path,
+                              release_date: movie.release_date,
+                              vote_average: movie.vote_average,
+                              overview: movie.overview })
+    })
+    .then(result => result.json());
+  };
+};
+
+export const removeFavorite = (userId, movieId) => {
+  return (dispatch) => {
+    fetch('/api/users/${userId}/favorites/${movieId}', {
+      method: 'DELETE',
+      body: JSON.stringify({user_id: userId, movie_id: movieId}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+      .then(response => response.json())
+    })
   }
 }

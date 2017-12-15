@@ -1,9 +1,25 @@
 import React from 'react';
 import './MovieCard.css'
 import { connect } from 'react-redux';
-import { toggleFavorites } from '../../Actions';
+import { toggleFavorites, addFavorite, removeFavorite } from '../../Actions';
 
 const MovieCard = (props) => {
+  const handleFavorite = (movie) => {
+    if (movie.isFavorite === false) {
+      props.addFavorite(movie, props.user.id);
+    } else {
+      props.removeFavorite(props.user.id, movie.movie_id);
+    }
+    props.toggleFavorites(movie);
+  };
+
+  const checkFavorites = (movie) => {
+    if (!props.user.name) {
+      alert('You must sign-in to add a favorite');
+    } else {
+      handleFavorite(movie)
+    }
+  }
 
   return (
     <article>
@@ -11,7 +27,7 @@ const MovieCard = (props) => {
       <div className="bottom-container">
       <button onClick={(event) => {
         event.preventDefault();
-        props.toggleFavorites(props.movie)
+        checkFavorites(props.movie)
       }}>FAVORITE<i className="icon-star"></i></button>
         <h1>{props.title}</h1>
       <button>More Info<i className="icon-exchange"></i></button>
@@ -20,10 +36,19 @@ const MovieCard = (props) => {
   )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    favorites: state.favorites
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleFavorites: (movie) => dispatch(toggleFavorites(movie)),
+    addFavorite: (movie, id) => dispatch(addFavorite(movie, id)),
+    removeFavorite: (userId, movieId) => dispatch(removeFavorite(userId, movieId))
   };
 };
 
-export default connect(null, mapDispatchToProps)(MovieCard);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

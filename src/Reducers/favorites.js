@@ -1,7 +1,7 @@
 const favorites = (state=[], action) => {
   switch(action.type) {
     case 'TOGGLE_FAVORITES':
-    console.log('FAV StateBefore', state)
+    console.log('movies-favReducer-toggling-Fav: ', action.movie.title)
     let stateSet = new Set([...state])
     if (stateSet.has(action.movie)) {
       stateSet.add(action.movie)
@@ -9,7 +9,6 @@ const favorites = (state=[], action) => {
       stateSet.add(action.movie)
     }
     const ArrayFromSet = [...stateSet]
-    console.log(ArrayFromSet);
     return ArrayFromSet
 
     default:
