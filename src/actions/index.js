@@ -57,19 +57,24 @@ export const signInAttempt = (email, password) => {
 
     const userData = await initialResponse.json();
 
-    return dispatch(signInSuccess(userData));
+    return dispatch(signInAndFavorites(userData));
   };
 };
 
+export const signInAndFavorites = (userObject) => {
+  return async dispatch => {
+    await dispatch(signInSuccess(userObject));
+    await dispatch(updateFavorites(userObject.data.id));
+  }
+}
+
 
 export const signInSuccess = async (userObject) => {
-  return dispatch => {
-    dispatch(updateFavorites(userObject.data.id));
-    return {
-      type: 'SIGNIN_SUCCESS',
-      userObject
-    };    
-  }
+  console.log('in signin');
+  return {
+    type: 'SIGNIN_SUCCESS',
+    userObject
+  };
 };
 
 export const signInFailure = (errorMessage) => {
@@ -197,7 +202,8 @@ export const removeFavorite = (movieId, userId) => {
 }
 
 export const updateFavorites = async (userId) => {
-
+  console.log('in favorites');
+  
     const updateFavorites = await fetch(`/api/users/${userId}/favorites`)
     const initialResponse = await updateFavorites.json()
     const favoritesData = await initialResponse.data
