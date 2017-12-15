@@ -43,6 +43,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleFavorites: (movie) => dispatch(toggleFavorites(movie)),
+    addFavorite: (movie, id) => dispatch(addFavorite(movie, id)),
+    removeFavorite: (userId, movieId) => dispatch(removeFavorite(userId, movieId))
   };
 };
 

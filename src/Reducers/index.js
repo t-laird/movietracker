@@ -4,6 +4,8 @@ import moviesHasErrored from './moviesHasErrored';
 import moviesIsLoading from './moviesIsLoading';
 import SignIn from './SignIn';
 import favorites from './favorites';
+import user from './user';
+import shouldShowFavorites from './shouldShowFavorites';
 
 
 export default combineReducers({
@@ -11,5 +13,7 @@ export default combineReducers({
   moviesHasErrored,
   moviesIsLoading,
   SignIn,
-  favorites
+  favorites,
+  user,
+  shouldShowFavorites
 });

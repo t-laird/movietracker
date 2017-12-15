@@ -140,6 +140,13 @@ export const toggleFavorites = (movie) => {
   }
 }
 
+export const showFavorites = (bool) => {
+  return {
+    type: 'USER_FAVORITES',
+    shouldShowFavorites: bool
+  }
+}
+
 export const fetchFavorites = (id) => {
   return (dispatch) => {
     fetch(`/api/users/${id}/favorites`)
