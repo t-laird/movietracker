@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './MovieCard.css'
 import { connect } from 'react-redux';
-import { toggleFavorites, addFavorite, removeFavorite } from '../../Actions';
+import { addFavorite, removeFavorite } from '../../Actions';
 
 class MovieCard extends Component{
   constructor() {
@@ -17,12 +17,14 @@ class MovieCard extends Component{
     const isFavorite = currentFavorites.find( movieId => {
       return movieId.title=== movie.title;
     });
+    console.log(this.props);
     if (!isFavorite) {
       this.props.addFavorite(movie, this.props.user.userData.id);
     } else {
-      this.props.removeFavorite(movie.id, this.props.user.userData.id);
+      console.log('In removeFavorite', movie.id, movie.movie_id, this.props.user.userData.id);
+      this.props.removeFavorite(movie, this.props.user.userData.id);
     }
-    this.props.toggleFavorites(movie)
+    // this.props.toggleFavorites(movie)
   };
 
   checkFavorites = (movie) => {
@@ -94,7 +96,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleFavorites: (movie) => dispatch(toggleFavorites(movie)),
+    // toggleFavorites: (movie) => dispatch(toggleFavorites(movie)),
     addFavorite: (movie, id) => dispatch(addFavorite(movie, id)),
     removeFavorite: (userId, movieId) => dispatch(removeFavorite(userId, movieId))
   };

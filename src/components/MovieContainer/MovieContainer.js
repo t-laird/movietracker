@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
-import { fetchMovieList, showFavorites, shouldShowFavorites } from '../../Actions';
+import { fetchMovieList } from '../../Actions';
 import './MovieContainer.css';
 const key = require('../../Utils/key');
 
@@ -40,15 +40,12 @@ const mapStateToProps = (state) => {
     favorites: state.favorites,
     hasErrored: state.moviesHasErrored,
     isLoading: state.moviesIsLoading,
-    user: state.user,
-    shouldShowFavorites: state.shouldShowFavorites
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchMovieList: (url) => dispatch(fetchMovieList(url)),
-    showFavorites: (bool) => dispatch(showFavorites(bool))
   };
 };
 

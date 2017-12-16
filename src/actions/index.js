@@ -84,7 +84,6 @@ export const signInFailure = (errorMessage) => {
   };
 };
 
-
 export const signOutEmptyFavorites = () => {
   return async dispatch => {
     await dispatch(signOut());
@@ -97,8 +96,6 @@ export const signOut = () => {
     type: 'SIGN_OUT'
   };
 };
-
-
 
 export const signUpAttempt = (name, email, password) => {
   return async (dispatch) => {
@@ -149,33 +146,6 @@ export const signUpSuccess = async (id) => {
   }
 }
 
-export const toggleFavorites = (movie) => {
-  return{
-    type: 'TOGGLE_FAVORITES',
-    movie
-  }
-}
-
-export const showFavorites = (bool) => {
-  console.log('show', bool);
-  return {
-    type: 'USER_FAVORITES',
-    shouldShowFavorites: bool
-  }
-}
-
-export const fetchFavorites = (id) => {
-  return (dispatch) => {
-    fetch(`/api/users/${id}/favorites`)
-     .then(response => response.json())
-     .then(favObject => {
-       favObject.map(favorite => {
-         dispatch(toggleFavorites(favorite))
-       })
-     })
-  }
-}
-
 export const addFavorite = (movie, id) => {
   return async (dispatch) => {
     const submitFavorite = await fetch('/api/users/favorites/new', {
@@ -196,11 +166,12 @@ export const addFavorite = (movie, id) => {
   };
 };
 
-export const removeFavorite = (movieId, userId) => {
+export const removeFavorite = (movie, userId) => {
   return async (dispatch) => {
-    const deleteFavorite = await fetch(`/api/users/${userId}/favorites/${movieId}`, {
+    const newId = movie.movie_id ? movie.movie_id : movie.id;
+    const deleteFavorite = await fetch(`/api/users/${userId}/favorites/${newId}`, {
       method: 'DELETE',
-      body: JSON.stringify({movie_id: movieId, user_id: userId}),
+      body: JSON.stringify({movie_id: newId, user_id: userId}),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -212,15 +183,13 @@ export const removeFavorite = (movieId, userId) => {
 }
 
 
-export const updateFavorites = async (userId) => {  
-
+export const updateFavorites = async (userId) => {
     const updateFavorites = await fetch(`/api/users/${userId}/favorites`)
     const initialResponse = await updateFavorites.json()
     const favoritesData = await initialResponse.data
     return {
       type: 'UPDATE_FAVORITES',
       favoritesData
-
   }
 }
 
