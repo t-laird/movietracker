@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
 import { fetchMovieList } from '../../Actions';
 import './MovieContainer.css';
-const key = require('../../Utils/key');
+import PropTypes from 'prop-types';
+
+const key = require('../../Utils/key')
 
 class MovieContainer extends Component {
   constructor() {
@@ -20,14 +22,14 @@ class MovieContainer extends Component {
     const movieArray = location === '/favorites' ? this.props.favorites : this.props.movies
     const movieCardsArray = movieArray.map( (movie) => {
       return (<MovieCard key={movie.id}
-                         poster={movie.poster_path}
-                         title={movie.title}
-                         overview={movie.overview}
-                         rating={movie.vote_average}
-                         movie={movie}/>)
-    })
-    return (
-      <section>
+        poster={movie.poster_path}
+        title={movie.title}
+        overview={movie.overview}
+        rating={movie.vote_average}
+        movie={movie}/>)
+      })
+      return (
+        <section>
         {movieCardsArray}
       </section>
     )
@@ -47,7 +49,15 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchMovieList: (url) => dispatch(fetchMovieList(url)),
   };
+  
 };
 
+MovieContainer.propTypes = {
+    movies: PropTypes.arrayOf({}).isRequired,
+    hasErrored: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    favorites: PropTypes.arrayOf({}).isRequired,
+    fetchMovieList: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieContainer);
