@@ -48,8 +48,12 @@ class MovieCard extends Component{
 
 
 render() {
-  console.log('rerender');
   const flipClass = this.state.cardFlipped ? 'flip' : '';
+  const isFavorite = this.props.favorites.find( movieId => {
+    return movieId.title === this.props.movie.title;
+  });
+  const starClass = isFavorite ? 'icon-star' : 'icon-star-empty';
+  const cardClass = isFavorite ? 'favorited' : '';
 
     return (
       <div className={`outer-card-container ${flipClass}`}>
@@ -60,8 +64,8 @@ render() {
               <button onClick={(event) => {
                 event.preventDefault();
                 this.checkFavorites(this.props.movie)
-              }}>Favorite<i className="icon-star"></i></button>
-              <h1>{this.props.title}</h1>
+              }}>Favorite<i className={starClass}></i></button>
+              <h1 className={cardClass}>{this.props.title}</h1>
               <button onClick={() => {this.flipCard()}}>More Info<i className="icon-exchange"></i></button>
             </div>
           </article>
@@ -77,8 +81,8 @@ render() {
               <button onClick={(event) => {
                 event.preventDefault();
                 this.checkFavorites(this.props.movie)
-              }}>Favorite<i className="icon-star"></i></button>
-              <h1>{this.props.title}</h1>
+              }}>Favorite<i className={starClass}></i></button>
+              <h1 className={cardClass}>{this.props.title}</h1>
               <button onClick={() => {this.flipCard()}}>More Info<i className="icon-exchange"></i></button>
             </div>
           </article>
