@@ -25,7 +25,7 @@ describe('header tests', () => {
   it('should be instantiated with the correct children', () => {
     const expectedH1Length = 1;
     const expectedH2Length = 1;
-    const expectedLinkLength = 2;
+    const expectedLinkLength = 3;
 
     expect(headerContainer.find('h1').length).toEqual(expectedH1Length);
     expect(headerContainer.find('h2').length).toEqual(expectedH1Length);
