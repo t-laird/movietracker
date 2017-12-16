@@ -85,11 +85,20 @@ export const signInFailure = (errorMessage) => {
 };
 
 
+export const signOutEmptyFavorites = () => {
+  return async dispatch => {
+    await dispatch(signOut());
+    await dispatch(emptyFavorites());
+  };
+};
+
 export const signOut = () => {
   return {
     type: 'SIGN_OUT'
-  }
-}
+  };
+};
+
+
 
 export const signUpAttempt = (name, email, password) => {
   return async (dispatch) => {
@@ -202,8 +211,8 @@ export const removeFavorite = (movieId, userId) => {
   }
 }
 
-export const updateFavorites = async (userId) => {
-  console.log('in favorites');
+
+export const updateFavorites = async (userId) => {  
 
     const updateFavorites = await fetch(`/api/users/${userId}/favorites`)
     const initialResponse = await updateFavorites.json()
@@ -212,5 +221,11 @@ export const updateFavorites = async (userId) => {
       type: 'UPDATE_FAVORITES',
       favoritesData
 
+  }
+}
+
+export const emptyFavorites = () => {
+  return {
+    type: 'EMPTY_FAVORITES'
   }
 }

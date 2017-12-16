@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signOut, showFavorites } from '../../Actions';
-import { push } from 'react-router-redux';
+import { signOutEmptyFavorites, showFavorites } from '../../Actions';
+import { push } from 'react-router-dom';
+
 
 export class Header extends Component{
   constructor(props) {
@@ -46,7 +47,7 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  signOut: () => dispatch(signOut()),
+  signOut: () => dispatch(signOutEmptyFavorites()),
   showFavorites: (bool) => dispatch(showFavorites(bool)),
   changeRoute: (url) => dispatch(push(url))
 })
