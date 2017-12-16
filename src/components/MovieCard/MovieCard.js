@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './MovieCard.css'
 import { connect } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../Actions';
+import PropTypes from 'prop-types';
 
 class MovieCard extends Component{
   constructor() {
@@ -100,6 +101,13 @@ const mapDispatchToProps = (dispatch) => {
     addFavorite: (movie, id) => dispatch(addFavorite(movie, id)),
     removeFavorite: (userId, movieId) => dispatch(removeFavorite(userId, movieId))
   };
+};
+
+MovieCard.propTypes = {
+  user: PropTypes.bool.isRequired,
+  favorites: PropTypes.arrayOf({}).isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  removeFavorites: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
