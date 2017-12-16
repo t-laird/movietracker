@@ -22,6 +22,7 @@ class MovieCard extends Component{
     } else {
       this.props.removeFavorite(movie.id, this.props.user.userData.id);
     }
+    this.props.toggleFavorites(movie)
   };
 
   checkFavorites = (movie) => {
