@@ -53,7 +53,7 @@ export const mapDispatchToProps = dispatch => ({
 Header.propTypes = {
   signedIn: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
-  favorites: PropTypes.arrayOf({}).isRequired,
+  favorites: PropTypes.array.isRequired,
   signOut: PropTypes.func.isRequired,
   changeRoute: PropTypes.func.isRequired
 };
