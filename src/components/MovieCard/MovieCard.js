@@ -106,10 +106,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 MovieCard.propTypes = {
-  user: PropTypes.bool.isRequired,
-  favorites: PropTypes.arrayOf({}).isRequired,
+  user: PropTypes.object.isRequired,
+  favorites: PropTypes.array.isRequired,
   addFavorite: PropTypes.func.isRequired,
-  removeFavorites: PropTypes.func.isRequired
+  removeFavorite: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

@@ -67,10 +67,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 MovieContainer.propTypes = {
-    movies: PropTypes.arrayOf({}).isRequired,
-    hasErrored: PropTypes.bool.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    favorites: PropTypes.arrayOf({}).isRequired,
+    movies: PropTypes.object.isRequired,
+    // hasErrored: PropTypes.bool.isRequired,
+    // isLoading: PropTypes.bool.isRequired,
+    favorites: PropTypes.array.isRequired,
     fetchMovieList: PropTypes.func.isRequired,
 };
 
