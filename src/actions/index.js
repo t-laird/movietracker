@@ -68,7 +68,6 @@ export const signInAndFavorites = (userObject) => {
 
 
 export const signInSuccess = async (userObject) => {
-  console.log('in signin');
   return {
     type: 'SIGNIN_SUCCESS',
     userObject
