@@ -16,6 +16,21 @@ class MovieContainer extends Component {
     this.props.fetchMovieList(`https://api.themoviedb.org/3/movie/now_playing?api_key=${key}`);
   }
 
+  renderMovies() {
+    const location = this.props.location.pathname;
+    const movieArray = location === '/favorites' ? this.props.favorites : this.props.movies.movies;
+    const movieCardsArray = movieArray.map((movie) => {
+      return (<MovieCard key={movie.id}
+        poster={movie.poster_path}
+        title={movie.title}
+        overview={movie.overview}
+        rating={movie.vote_average}
+        movie={movie} />)
+    })
+
+    return movieCardsArray
+  }
+
   render() {
     const location = this.props.location.pathname;
     const movieArray = location === '/favorites' ? this.props.favorites : this.props.movies.movies;
@@ -29,7 +44,7 @@ class MovieContainer extends Component {
       })
       return (
         <section>
-        {movieCardsArray}
+        {this.renderMovies()}
       </section>
     )
   }
