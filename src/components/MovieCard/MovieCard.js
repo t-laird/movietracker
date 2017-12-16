@@ -16,7 +16,7 @@ class MovieCard extends Component{
   handleFavorite = (movie) => {
     const currentFavorites = this.props.favorites;
     const isFavorite = currentFavorites.find( movieId => {
-      return movieId.title=== movie.title;
+      return movieId.title === movie.title;
     });
     if (!isFavorite) {
       this.props.addFavorite(
@@ -45,10 +45,6 @@ class MovieCard extends Component{
       cardFlipped
     });
   };
-
-
-
-
 
   render() {
     const flipClass = this.state.cardFlipped ? 'flip' : '';
