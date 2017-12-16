@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signOutEmptyFavorites, showFavorites } from '../../Actions';
-import { push } from 'react-router-dom';
+import { signOutEmptyFavorites } from '../../Actions';
+import { push } from 'react-router-redux';
 
 
 export class Header extends Component{
@@ -28,7 +28,6 @@ export class Header extends Component{
         <h1>Movie Tracker</h1>
         <h2><Link to='/favorites'
           onClick={() => {
-            this.props.showFavorites(true)
             this.props.changeRoute('/favorites')
           }}>FAVORITES: {this.props.favorites.length}</Link></h2>
         <div className="sign-in">
@@ -42,13 +41,11 @@ export class Header extends Component{
 export const mapStateToProps = (state) => ({
   signedIn: state.SignIn.signedIn,
   userName: state.SignIn.userData.name,
-  shouldShowFavorites: state.shouldShowFavorites,
   favorites: state.favorites
 });
 
 export const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(signOutEmptyFavorites()),
-  showFavorites: (bool) => dispatch(showFavorites(bool)),
   changeRoute: (url) => dispatch(push(url))
 })
 
