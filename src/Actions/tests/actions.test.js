@@ -79,4 +79,39 @@ describe('all actions', () => {
 
 
   });
-})
+
+  describe('Movie actions', () => {
+
+    it('has a type of MOVIES_IS_LOADING', () => {
+      const isLoading = true;
+      const expected = {
+        type: 'MOVIES_IS_LOADING',
+        isLoading
+      }
+      expect(actions.moviesIsLoading(isLoading)).toEqual(expected)
+    })
+
+    // REMOVE_TODO
+    it('has a type of MOVIES_HAS_ERRORED', () => {
+      const hasErrored = true;
+      const expected = {
+        type: 'MOVIES_HAS_ERRORED',
+        hasErrored
+      }
+      expect(actions.moviesHasErrored(hasErrored)).toEqual(expected)
+    })
+
+    it('has a type of MOVIES_FETCH_DATA_SUCCESS', () => {
+      const movies = [{ stuff: 'stuff' }];
+      const expected = {
+        type: 'MOVIES_FETCH_DATA_SUCCESS',
+        movies
+      }
+      expect(actions.moviesFetchDataSuccess(movies)).toEqual(expected)
+    })
+
+    it('should fetch a movielist', () => {
+
+    })
+  });
+});
