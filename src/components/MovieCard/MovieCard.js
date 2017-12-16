@@ -120,7 +120,6 @@ MovieCard.propTypes = {
   title: PropTypes.string,
   rating: PropTypes.number,
   overview: PropTypes.string,
-  user: PropTypes.object.isRequired,
   favorites: PropTypes.array.isRequired,
   addFavorite: PropTypes.func.isRequired,
   removeFavorites: PropTypes.func

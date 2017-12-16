@@ -15,22 +15,25 @@ class MovieContainer extends Component {
     );
   }
 
-  render() {
+  renderMovies() {
     const location = this.props.location.pathname;
-    const movieArray = location === '/favorites'
-      ? this.props.favorites
-      : this.props.movies.movies;
-    const movieCardsArray = movieArray.map( (movie) => {
+    const movieArray = location === '/favorites' ? this.props.favorites : this.props.movies.movies;
+    const movieCardsArray = movieArray.map((movie) => {
       return (<MovieCard key={movie.id}
         poster={movie.poster_path}
         title={movie.title}
         overview={movie.overview}
         rating={movie.vote_average}
-        movie={movie}/>);
-    });
+        movie={movie} />)
+    })
+
+    return movieCardsArray
+  }
+
+  render() {
     return (
       <section>
-        {movieCardsArray}
+        {this.renderMovies()}
       </section>
     );
   }
