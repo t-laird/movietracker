@@ -15,7 +15,9 @@ class MovieContainer extends Component {
   }
 
   render() {
-    const movieArray = this.props.shouldShowFavorites ? this.props.favorites : this.props.movies
+    const location = this.props.location.pathname
+    console.log(this.props);
+    const movieArray = location === '/favorites' ? this.props.favorites : this.props.movies
     const movieCardsArray = movieArray.map( (movie) => {
       return (<MovieCard key={movie.id}
                          poster={movie.poster_path}
