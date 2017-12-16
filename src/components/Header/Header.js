@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { signOut, showFavorites } from '../../Actions';
 import { push } from 'react-router-dom';
 
-class Header extends Component{
+export class Header extends Component{
   constructor(props) {
     super(props);
   }
@@ -37,14 +37,14 @@ class Header extends Component{
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   signedIn: state.SignIn.signedIn,
   userName: state.SignIn.userData.name,
   shouldShowFavorites: state.shouldShowFavorites,
   favorites: state.favorites
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(signOut()),
   showFavorites: (bool) => dispatch(showFavorites(bool))
 })
