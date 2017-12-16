@@ -6,5 +6,5 @@ import favorites from './favorites';
 export default combineReducers({
   movies,
   SignIn,
-  favorites,
+  favorites
 });

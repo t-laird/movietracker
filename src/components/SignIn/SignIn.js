@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import './SignIn.css';
 import { connect } from 'react-redux';
 import { signInAttempt, signUpAttempt } from '../../Actions';
@@ -26,14 +26,14 @@ class SignIn extends Component {
     });
   }
 
-  handleChange(e, type) {
+  handleChange(event, type) {
     this.setState({
-      [type]: e.target.value
+      [type]: event.target.value
     });
   }
 
-  handleShowPass(e) {
-    if (e.target.checked) {
+  handleShowPass(event) {
+    if (event.target.checked) {
       this.setState({
         passwordDisplay: 'text'
       });
@@ -44,15 +44,24 @@ class SignIn extends Component {
     }
   }
 
-  submitHandler = (e) => {
-    e.preventDefault();
+  submitHandler = (event) => {
+    event.preventDefault();
     const { nameInputVal, usernameInputVal, passwordInputVal } = this.state;
     if (this.state.signup) {
-      if (nameInputVal.length > 2 && usernameInputVal.length > 2 && passwordInputVal.length > 2) {
-        this.props.signUpForApp(nameInputVal, usernameInputVal, passwordInputVal);
+      if (nameInputVal.length > 2
+          && usernameInputVal.length > 2
+          && passwordInputVal.length > 2) {
+        this.props.signUpForApp(
+          nameInputVal,
+          usernameInputVal,
+          passwordInputVal
+        );
       }
     } else {
-      this.props.signInToApp(usernameInputVal, passwordInputVal);
+      this.props.signInToApp(
+        usernameInputVal,
+        passwordInputVal
+      );
     }
   }
 
@@ -71,7 +80,7 @@ class SignIn extends Component {
         value={this.state.nameInputVal}
         onFocus={() => this.inputFocus('name', 'signin-input focused')}
         onBlur={() => this.inputFocus('name', 'signin-input')}
-        onChange={(e) => this.handleChange(e, 'nameInputVal')}
+        onChange={(event) => this.handleChange(event, 'nameInputVal')}
         placeholder="Name" /> : null;
 
     const submitText = signup ? "Sign Up!" : "Sign In!";
@@ -80,7 +89,9 @@ class SignIn extends Component {
 
     const signinError = this.props.userObject.error;
 
-    const errorStatement = !signinError ? null : <span className="error">{signinError}</span>
+    const errorStatement = !signinError
+      ? null
+      : <span className="error">{signinError}</span>;
 
     return (
       <div className="SignIn">
@@ -88,39 +99,42 @@ class SignIn extends Component {
           <Link to="/" className="sign-in-close">Close</Link>
           {errorStatement}
           {signupInput}
-          <input 
-            type="text" 
+          <input
+            type="text"
             className={this.state.usernameClass}
-            value={this.state.usernameInputVal} 
+            value={this.state.usernameInputVal}
             onFocus={() => this.inputFocus('username', 'signin-input focused')}
             onBlur={() => this.inputFocus('username', 'signin-input')}
-            onChange={(e) => this.handleChange(e, 'usernameInputVal')}
+            onChange={(event) => this.handleChange(event, 'usernameInputVal')}
             placeholder="Username (email)" />
-          <input 
+          <input
             type={this.state.passwordDisplay}
             className={this.state.passwordClass}
-            value={this.state.passwordInputVal} 
+            value={this.state.passwordInputVal}
             onFocus={() => this.inputFocus('password', 'signin-input focused')}
             onBlur={() => this.inputFocus('password', 'signin-input')}
-            onChange={(e) => this.handleChange(e, 'passwordInputVal')}            
+            onChange={(event) => this.handleChange(event, 'passwordInputVal')}
             placeholder="Password (case sensitive)" />
           <div className="password-show-hide">
             <div className={`type-toggle ${buttonClass}`}>
-              <button tabIndex="-1" onClick={this.changeSignInType} className={buttonClass}>{signinToggle}</button>
+              <button
+                tabIndex="-1"
+                onClick={this.changeSignInType}
+                className={buttonClass}>{signinToggle}</button>
             </div>
             <label htmlFor="password-option">Show Password?</label>
-              <input 
-                id="password-option" 
-                onChange={(e)=> this.handleShowPass(e)} 
-                tabIndex="-1"
-                type="checkbox" 
-                name="passOption" 
-                value="text" />
+            <input
+              id="password-option"
+              onChange={(event)=> this.handleShowPass(event)}
+              tabIndex="-1"
+              type="checkbox"
+              name="passOption"
+              value="text" />
           </div>
           <input type="submit" value={submitText} />
         </form>
       </div>
-    )
+    );
   }
 }
 

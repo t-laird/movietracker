@@ -1,8 +1,8 @@
 import * as actions from '../index';
 import thunk from 'redux-thunk';
 
-const middlewares = [thunk]
-const mockStore = configureMockStore(middlewares)
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('all actions', () => {
   describe('signin related actions', () => {
@@ -21,7 +21,7 @@ describe('all actions', () => {
       const expectedRes = {
         type: 'SIGNIN_SUCCESS',
         userObject: mockUserObject
-      }
+      };
 
       expect(actions.signInSuccess(mockUserObject)).toEqual(expectedRes);
     });
@@ -56,24 +56,24 @@ describe('all actions', () => {
           }
         )
       })
-    );
+      );
       
-    actions.signUpAttempt('thomas, email, pass');
-    const middlewares = [thunk]
-    const mockStore = configureMockStore(middlewares);
+      actions.signUpAttempt('thomas, email, pass');
+      const middlewares = [thunk];
+      const mockStore = configureMockStore(middlewares);
     
     
-  const expectedActions = [
-    { type: types.FETCH_TODOS_REQUEST },
-    { type: types.FETCH_TODOS_SUCCESS, body: { todos: ['do something'] } }
-  ];
+      const expectedActions = [
+        { type: types.FETCH_TODOS_REQUEST },
+        { type: types.FETCH_TODOS_SUCCESS, body: { todos: ['do something'] } }
+      ];
 
-  const store = mockStore({ todos: [] })
+      const store = mockStore({ todos: [] });
 
-  return store.dispatch(actions.fetchTodos()).then(() => {
-    // return of async actions
-    expect(store.getActions()).toEqual  (expectedActions)
-  })
+      return store.dispatch(actions.fetchTodos()).then(() => {
+        // return of async actions
+        expect(store.getActions()).toEqual(expectedActions);
+      });
 
     });
 
@@ -87,9 +87,9 @@ describe('all actions', () => {
       const expected = {
         type: 'MOVIES_IS_LOADING',
         isLoading
-      }
-      expect(actions.moviesIsLoading(isLoading)).toEqual(expected)
-    })
+      };
+      expect(actions.moviesIsLoading(isLoading)).toEqual(expected);
+    });
 
     // REMOVE_TODO
     it('has a type of MOVIES_HAS_ERRORED', () => {
@@ -97,21 +97,21 @@ describe('all actions', () => {
       const expected = {
         type: 'MOVIES_HAS_ERRORED',
         hasErrored
-      }
-      expect(actions.moviesHasErrored(hasErrored)).toEqual(expected)
-    })
+      };
+      expect(actions.moviesHasErrored(hasErrored)).toEqual(expected);
+    });
 
     it('has a type of MOVIES_FETCH_DATA_SUCCESS', () => {
       const movies = [{ stuff: 'stuff' }];
       const expected = {
         type: 'MOVIES_FETCH_DATA_SUCCESS',
         movies
-      }
-      expect(actions.moviesFetchDataSuccess(movies)).toEqual(expected)
-    })
+      };
+      expect(actions.moviesFetchDataSuccess(movies)).toEqual(expected);
+    });
 
     it('should fetch a movielist', () => {
 
-    })
+    });
   });
 });

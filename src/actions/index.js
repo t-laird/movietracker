@@ -1,3 +1,5 @@
+/*eslint-disable camelcase*/
+
 export const moviesHasErrored = () => {
   return {
     type: 'MOVIES_HAS_ERRORED'
@@ -6,7 +8,7 @@ export const moviesHasErrored = () => {
 
 export const moviesIsLoading = () => {
   return {
-    type: 'MOVIES_IS_LOADING',
+    type: 'MOVIES_IS_LOADING'
   };
 };
 
@@ -14,23 +16,23 @@ export const moviesFetchDataSuccess = (movies) => {
   return {
     type: 'MOVIES_FETCH_DATA_SUCCESS',
     movies
-    };
+  };
 };
 
 export const fetchMovieList = (url) => {
   return (dispatch) => {
     dispatch(moviesIsLoading(true));
-      fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            throw Error(response.statusText);
-          }
-            dispatch(moviesIsLoading());
-              return response;
-            })
-        .then((response) => response.json())
-        .then((items) => dispatch(moviesFetchDataSuccess(items)))
-        .catch(() => dispatch(moviesHasErrored()));
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        dispatch(moviesIsLoading());
+        return response;
+      })
+      .then((response) => response.json())
+      .then((items) => dispatch(moviesFetchDataSuccess(items)))
+      .catch(() => dispatch(moviesHasErrored()));
   };
 };
 
@@ -49,7 +51,6 @@ export const signInAttempt = (email, password) => {
 
 
     if (initialResponse.status >= 400) {
-      console.log('failure');
       return dispatch(signInFailure('user not found'));
     }
 
@@ -63,8 +64,8 @@ export const signInAndFavorites = (userObject) => {
   return async dispatch => {
     await dispatch(signInSuccess(userObject));
     await dispatch(updateFavorites(userObject.data.id));
-  }
-}
+  };
+};
 
 
 export const signInSuccess = async (userObject) => {
@@ -116,16 +117,15 @@ export const signUpAttempt = (name, email, password) => {
 
       return dispatch(signUpSuccess(newUserId.id));
     }
-  }
-}
+  };
+};
 
 export const signUpFailure = (error) => {
-  console.log(error);
   return {
     type: "SIGN_UP_FAILURE",
     error
-  }
-}
+  };
+};
 
 export const signUpSuccess = async (id) => {
   const allUsers = await fetch('/api/users', {
@@ -136,12 +136,11 @@ export const signUpSuccess = async (id) => {
   });
   const userData = await allUsers.json();
   const newUser = userData.data.find( user => user.id === id);
-  console.log(newUser);
   return {
     type: "SIGN_UP_SUCCESS",
     newUser
-  }
-}
+  };
+};
 
 export const addFavorite = (movie, id) => {
   return async (dispatch) => {
@@ -151,47 +150,47 @@ export const addFavorite = (movie, id) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ movie_id: movie.id,
-                              user_id: id,
-                              title: movie.title,
-                              poster_path: movie.poster_path,
-                              release_date: movie.release_date,
-                              vote_average: movie.vote_average,
-                              overview: movie.overview })
-    })
-    const favoriteAdded = await submitFavorite.json()
-    return dispatch(updateFavorites(id))
+        user_id: id,
+        title: movie.title,
+        poster_path: movie.poster_path,
+        release_date: movie.release_date,
+        vote_average: movie.vote_average,
+        overview: movie.overview })
+    });
+    // const favoriteAdded = await submitFavorite.json();
+    return dispatch(updateFavorites(id));
   };
 };
 
 export const removeFavorite = (movie, userId) => {
   return async (dispatch) => {
     const newId = movie.movie_id ? movie.movie_id : movie.id;
-    const deleteFavorite = await fetch(`/api/users/${userId}/favorites/${newId}`, {
-      method: 'DELETE',
-      body: JSON.stringify({movie_id: newId, user_id: userId}),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const deleteSuccess = await deleteFavorite.json()
-    return dispatch(updateFavorites(userId))
-    console.log(deleteSuccess);
-  }
-}
+    const deleteFavorite =
+      await fetch(`/api/users/${userId}/favorites/${newId}`, {
+        method: 'DELETE',
+        body: JSON.stringify({ movie_id: newId, user_id: userId }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    const deleteSuccess = await deleteFavorite.json();
+    return dispatch(updateFavorites(userId));
+  };
+};
 
 
 export const updateFavorites = async (userId) => {
-    const updateFavorites = await fetch(`/api/users/${userId}/favorites`)
-    const initialResponse = await updateFavorites.json()
-    const favoritesData = await initialResponse.data
-    return {
-      type: 'UPDATE_FAVORITES',
-      favoritesData
-  }
-}
+  const updateFavorites = await fetch(`/api/users/${userId}/favorites`);
+  const initialResponse = await updateFavorites.json();
+  const favoritesData = await initialResponse.data;
+  return {
+    type: 'UPDATE_FAVORITES',
+    favoritesData
+  };
+};
 
 export const emptyFavorites = () => {
   return {
     type: 'EMPTY_FAVORITES'
-  }
-}
+  };
+};

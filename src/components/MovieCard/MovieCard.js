@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './MovieCard.css'
+import './MovieCard.css';
 import { connect } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../Actions';
 import PropTypes from 'prop-types';
@@ -18,21 +18,24 @@ class MovieCard extends Component{
     const isFavorite = currentFavorites.find( movieId => {
       return movieId.title=== movie.title;
     });
-    console.log(this.props);
     if (!isFavorite) {
-      this.props.addFavorite(movie, this.props.user.userData.id);
+      this.props.addFavorite(
+        movie,
+        this.props.user.userData.id
+      );
     } else {
-      console.log('In removeFavorite', movie.id, movie.movie_id, this.props.user.userData.id);
-      this.props.removeFavorite(movie, this.props.user.userData.id);
+      this.props.removeFavorite(
+        movie,
+        this.props.user.userData.id
+      );
     }
-    // this.props.toggleFavorites(movie)
   };
 
   checkFavorites = (movie) => {
     if (!this.props.user.signedIn) {
       alert('You must sign-in to add a favorite');
     } else {
-      this.handleFavorite(movie)
+      this.handleFavorite(movie);
     }
   };
 
@@ -47,26 +50,30 @@ class MovieCard extends Component{
 
 
 
-render() {
-  const flipClass = this.state.cardFlipped ? 'flip' : '';
-  const isFavorite = this.props.favorites.find( movieId => {
-    return movieId.title === this.props.movie.title;
-  });
-  const starClass = isFavorite ? 'icon-star' : 'icon-star-empty';
-  const cardClass = isFavorite ? 'favorited' : '';
+  render() {
+    const flipClass = this.state.cardFlipped ? 'flip' : '';
+    const isFavorite = this.props.favorites.find( movieId => {
+      return movieId.title === this.props.movie.title;
+    });
+    const starClass = isFavorite ? 'icon-star' : 'icon-star-empty';
+    const cardClass = isFavorite ? 'favorited' : '';
 
     return (
       <div className={`outer-card-container ${flipClass}`}>
         <div className="inner-card-container">
           <article className="card-front face">
-            <img src={`https://image.tmdb.org/t/p/w500${this.props.poster}`} alt="movie poster" />
+            <img src={
+              `https://image.tmdb.org/t/p/w500${this.props.poster}`
+            } alt="movie poster" />
             <div className="bottom-container">
               <button onClick={(event) => {
                 event.preventDefault();
-                this.checkFavorites(this.props.movie)
+                this.checkFavorites(this.props.movie);
               }}>Favorite<i className={starClass}></i></button>
               <h1 className={cardClass}>{this.props.title}</h1>
-              <button onClick={() => {this.flipCard()}}>More Info<i className="icon-exchange"></i></button>
+              <button onClick={
+                () => { this.flipCard(); }
+              }>More Info<i className="icon-exchange"></i></button>
             </div>
           </article>
           <article className="card-back face">
@@ -80,15 +87,17 @@ render() {
             <div className="bottom-container">
               <button onClick={(event) => {
                 event.preventDefault();
-                this.checkFavorites(this.props.movie)
+                this.checkFavorites(this.props.movie);
               }}>Favorite<i className={starClass}></i></button>
               <h1 className={cardClass}>{this.props.title}</h1>
-              <button onClick={() => {this.flipCard()}}>More Info<i className="icon-exchange"></i></button>
+              <button onClick={
+                () => { this.flipCard(); }
+              }>More Info<i className="icon-exchange"></i></button>
             </div>
           </article>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -96,22 +105,29 @@ const mapStateToProps = (state) => {
   return {
     user: state.SignIn,
     favorites: state.favorites
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // toggleFavorites: (movie) => dispatch(toggleFavorites(movie)),
-    addFavorite: (movie, id) => dispatch(addFavorite(movie, id)),
-    removeFavorite: (userId, movieId) => dispatch(removeFavorite(userId, movieId))
+    addFavorite: (movie, id) =>
+      dispatch(addFavorite(movie, id)),
+    removeFavorite: (userId, movieId) =>
+      dispatch(removeFavorite(userId, movieId))
   };
 };
 
 MovieCard.propTypes = {
-  user: PropTypes.bool.isRequired,
-  favorites: PropTypes.arrayOf({}).isRequired,
+  removeFavorite: PropTypes.func.isRequired,
+  movie: PropTypes.object.isRequired,
+  poster: PropTypes.string,
+  title: PropTypes.string,
+  rating: PropTypes.number,
+  overview: PropTypes.string,
+  user: PropTypes.object.isRequired,
+  favorites: PropTypes.array.isRequired,
   addFavorite: PropTypes.func.isRequired,
-  removeFavorites: PropTypes.func.isRequired
+  removeFavorites: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
