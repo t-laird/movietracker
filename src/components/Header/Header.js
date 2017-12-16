@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOutEmptyFavorites } from '../../Actions';
 import { push } from 'react-router-redux';
+import PropTypes from 'prop-types';
 
 
 export class Header extends Component{
@@ -48,5 +49,13 @@ export const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(signOutEmptyFavorites()),
   changeRoute: (url) => dispatch(push(url))
 })
+
+Header.propTypes = {
+  signedIn: PropTypes.bool.isRequired,
+  userName: PropTypes.string.isRequired,
+  favorites: PropTypes.arrayOf({}).isRequired,
+  signOut: PropTypes.func.isRequired,
+  changeRoute: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

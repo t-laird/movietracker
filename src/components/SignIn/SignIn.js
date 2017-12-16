@@ -3,6 +3,7 @@ import './SignIn.css';
 import { connect } from 'react-redux';
 import { signInAttempt, signUpAttempt } from '../../Actions';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class SignIn extends Component {
   constructor() {
@@ -136,6 +137,11 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
+SignIn.propTypes = {
+  userObject: PropTypes.object.isRequired,
+  signInToApp: PropTypes.func.isRequired,
+  signUpForApp: PropTypes.func.isRequired
+};
 
 
 
