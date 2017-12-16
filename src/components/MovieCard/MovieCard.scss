@@ -6,13 +6,6 @@
    height: 500px;
    perspective: 1000;
    z-index: 1;
-  //  &:hover {
-  //    .inner-card-container {
-  //      transform: rotateY(180deg);
-  //      box-shadow: -4px 4px 4px rgba(0,0,0,0.2);    
-       
-  //     }  
-  //   }
     
     .inner-card-container {
       width: 100%;
@@ -48,11 +41,16 @@
               font-size: 25px;
               margin: 0px;
               height: 70px;
-              width: 150px;
+              width: 170px;
               display: flex;
               justify-content: center;
               align-items: center;
               text-align: center;
+            }
+            
+            h1.favorited {
+              background-color: #00AEFF;
+              color: black;
             }
         
             button{
@@ -112,6 +110,8 @@
               font-size: 20px;
               padding: 10px;
               margin: 0px;
+              height: 310px;
+              overflow: scroll;              
             }
           }
           .bottom-container {
@@ -126,11 +126,15 @@
               font-size: 25px;
               margin: 0px;
               height: 70px;
-              width: 150px;
+              width: 170px;
               display: flex;
               justify-content: center;
               align-items: center;
               text-align: center;
+            }
+            h1.favorited {
+              background-color: #00AEFF;
+              color: black;
             }
         
             button{
