@@ -25,7 +25,7 @@ export class Header extends Component{
 
     return (
       <div className="Header">
-        <h1>Movie Tracker</h1>
+        <h1><Link to='/'>Movie Tracker</Link></h1>
         <h2><Link to='/favorites'
           onClick={() => {
             this.props.changeRoute('/favorites')
