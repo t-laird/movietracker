@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
-import { fetchMovieList, showFavorites, } from '../../Actions';
+import { fetchMovieList, showFavorites, shouldShowFavorites } from '../../Actions';
 import './MovieContainer.css';
 const key = require('../../Utils/key');
 
@@ -11,12 +11,13 @@ class MovieContainer extends Component {
   }
 
   componentDidMount() {
-    console.log('MovieCardContainer',this.props);
     this.props.fetchMovieList(`https://api.themoviedb.org/3/movie/now_playing?api_key=${key}`)
   }
 
   render() {
-    const movieArray = this.props.shouldShowFavorites ? this.props.favorites : this.props.movies
+    const location = this.props.location.pathname
+    console.log(this.props);
+    const movieArray = location === '/favorites' ? this.props.favorites : this.props.movies
     const movieCardsArray = movieArray.map( (movie) => {
       return (<MovieCard key={movie.id}
                          poster={movie.poster_path}

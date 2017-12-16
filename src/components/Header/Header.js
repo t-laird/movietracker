@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { signOutEmptyFavorites, showFavorites } from '../../Actions';
 import { push } from 'react-router-dom';
 
+
 export class Header extends Component{
   constructor(props) {
     super(props);
@@ -28,6 +29,7 @@ export class Header extends Component{
         <h2><Link to='/favorites'
           onClick={() => {
             this.props.showFavorites(true)
+            this.props.changeRoute('/favorites')
           }}>FAVORITES: {this.props.favorites.length}</Link></h2>
         <div className="sign-in">
           {signInContent}
@@ -46,7 +48,8 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(signOutEmptyFavorites()),
-  showFavorites: (bool) => dispatch(showFavorites(bool))
+  showFavorites: (bool) => dispatch(showFavorites(bool)),
+  changeRoute: (url) => dispatch(push(url))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
