@@ -27,7 +27,7 @@ export const fetchMovieList = (url) => {
         if (!response.ok) {
           throw Error(response.statusText);
         }
-        dispatch(moviesIsLoading());
+
         return response;
       })
       .then((response) => response.json())
