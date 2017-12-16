@@ -148,6 +148,7 @@ export const toggleFavorites = (movie) => {
 }
 
 export const showFavorites = (bool) => {
+  console.log('show', bool);
   return {
     type: 'USER_FAVORITES',
     shouldShowFavorites: bool
@@ -203,7 +204,7 @@ export const removeFavorite = (movieId, userId) => {
 
 export const updateFavorites = async (userId) => {
   console.log('in favorites');
-  
+
     const updateFavorites = await fetch(`/api/users/${userId}/favorites`)
     const initialResponse = await updateFavorites.json()
     const favoritesData = await initialResponse.data

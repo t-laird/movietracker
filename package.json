@@ -30,6 +30,7 @@
     "enzyme-adapter-react-15": "^1.0.5",
     "enzyme-adapter-react-16": "^1.1.0",
     "node-sass-chokidar": "0.0.3",
+    "react-router-redux": "^4.0.8",
     "redux-logger": "^3.0.6"
   }
 }

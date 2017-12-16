@@ -3,7 +3,7 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut, showFavorites } from '../../Actions';
-import { push } from 'react-router-dom';
+import { push } from 'react-router-redux';
 
 export class Header extends Component{
   constructor(props) {
@@ -28,6 +28,7 @@ export class Header extends Component{
         <h2><Link to='/favorites'
           onClick={() => {
             this.props.showFavorites(true)
+            this.props.changeRoute('/favorites')
           }}>FAVORITES: {this.props.favorites.length}</Link></h2>
         <div className="sign-in">
           {signInContent}
@@ -46,7 +47,8 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(signOut()),
-  showFavorites: (bool) => dispatch(showFavorites(bool))
+  showFavorites: (bool) => dispatch(showFavorites(bool)),
+  changeRoute: (url) => dispatch(push(url))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
