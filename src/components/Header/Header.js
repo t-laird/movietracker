@@ -8,12 +8,10 @@ import PropTypes from 'prop-types';
 
 
 export class Header extends Component{
-  constructor(props) {
-    super(props);
-  }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextProps.location.pathname === '/signin' && nextProps.signedIn === true) {
+  componentWillUpdate(nextProps) {
+    if (nextProps.location.pathname === '/signin'
+      && nextProps.signedIn === true) {
       this.props.history.push('/');
     }
   }
@@ -21,7 +19,12 @@ export class Header extends Component{
   render() {
     const signedIn = this.props.signedIn;
     const signInContent = signedIn
-      ? (<div className="sign-out"><span>Welcome, {this.props.userName}</span> <Link className="sign-in-link" onClick={() => this.props.signOut()} to="/">Sign Out</Link></div>)
+      ? (<div className="sign-out">
+        <span>Welcome, {this.props.userName}</span>
+        <Link className="sign-in-link" onClick={
+          () => this.props.signOut()
+        } to="/">Sign Out</Link>
+      </div>)
       : <Link className="sign-in-link" to="/signin">Sign In/Sign Up</Link>;
 
     return (
@@ -29,7 +32,7 @@ export class Header extends Component{
         <h1><Link to='/'>Movie Tracker</Link></h1>
         <h2><Link to='/favorites'
           onClick={() => {
-            this.props.changeRoute('/favorites')
+            this.props.changeRoute('/favorites');
           }}>FAVORITES: {this.props.favorites.length}</Link></h2>
         <div className="sign-in">
           {signInContent}
@@ -48,9 +51,10 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(signOutEmptyFavorites()),
   changeRoute: (url) => dispatch(push(url))
-})
+});
 
 Header.propTypes = {
+  history: PropTypes.object.isRequired,
   signedIn: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
   favorites: PropTypes.array.isRequired,

@@ -21,7 +21,7 @@ describe('all actions', () => {
       const expectedRes = {
         type: 'SIGNIN_SUCCESS',
         userObject: mockUserObject
-      }
+      };
 
       expect(await actions.signInSuccess(mockUserObject)).toEqual(expectedRes);
     });
@@ -86,30 +86,31 @@ describe('all actions', () => {
       const isLoading = true;
       const expected = {
         type: 'MOVIES_IS_LOADING',
-      }
-      expect(actions.moviesIsLoading()).toEqual(expected)
-    })
+      };
+      expect(actions.moviesIsLoading(isLoading)).toEqual(expected);
+    });
 
     // REMOVE_TODO
     it('has a type of MOVIES_HAS_ERRORED', () => {
       const hasErrored = true;
       const expected = {
-        type: 'MOVIES_HAS_ERRORED'
-      }
-      expect(actions.moviesHasErrored()).toEqual(expected)
-    })
+        type: 'MOVIES_HAS_ERRORED',
+      };
+      expect(actions.moviesHasErrored(hasErrored)).toEqual(expected);
+    });
+
 
     it('has a type of MOVIES_FETCH_DATA_SUCCESS', () => {
       const movies = [{ stuff: 'stuff' }];
       const expected = {
         type: 'MOVIES_FETCH_DATA_SUCCESS',
         movies
-      }
-      expect(actions.moviesFetchDataSuccess(movies)).toEqual(expected)
-    })
+      };
+      expect(actions.moviesFetchDataSuccess(movies)).toEqual(expected);
+    });
 
     it('should fetch a movielist', () => {
 
-    })
+    });
   });
 });
