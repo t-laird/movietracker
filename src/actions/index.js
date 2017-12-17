@@ -49,7 +49,6 @@ export const signInAttempt = (email, password) => {
       })
     });
 
-
     if (initialResponse.status >= 400) {
       return dispatch(signInFailure('user not found'));
     }
@@ -63,12 +62,12 @@ export const signInAttempt = (email, password) => {
 export const signInAndFavorites = (userObject) => {
   return async dispatch => {
     await dispatch(signInSuccess(userObject));
-    await dispatch(updateFavorites(userObject.data.id));
+    return await dispatch(updateFavorites(userObject.data.id));
   };
 };
 
 
-export const signInSuccess = async (userObject) => {
+export const signInSuccess = (userObject) => {
   return {
     type: 'SIGNIN_SUCCESS',
     userObject
