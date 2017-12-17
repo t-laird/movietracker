@@ -13,7 +13,8 @@ export class Header extends Component{
 
   componentWillUpdate(nextProps) {
     if (
-      nextProps.location.pathname === '/signin' && nextProps.signedIn === true
+      nextProps.location.pathname === '/signin' && 
+      nextProps.signedIn === true
     ) {
       this.props.history.push('/');
     }
