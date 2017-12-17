@@ -127,12 +127,7 @@ export const signUpFailure = (error) => {
 };
 
 export const signUpSuccess = async (id) => {
-  const allUsers = await fetch('/api/users', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
+  const allUsers = await fetch('/api/users');
   const userData = await allUsers.json();
   const newUser = userData.data.find( user => user.id === id);
   return {
