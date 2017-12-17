@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../Actions';
 import PropTypes from 'prop-types';
 
-class MovieCard extends Component{
+export class MovieCard extends Component{
   constructor() {
     super();
     this.state = {
@@ -18,6 +18,7 @@ class MovieCard extends Component{
     const isFavorite = currentFavorites.find( movieId => {
       return movieId.title === movie.title;
     });
+
     if (!isFavorite) {
       this.props.addFavorite(
         movie,
@@ -97,14 +98,14 @@ class MovieCard extends Component{
   }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return {
     user: state.SignIn,
     favorites: state.favorites
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return {
     addFavorite: (movie, id) =>
       dispatch(addFavorite(movie, id)),
@@ -120,6 +121,7 @@ MovieCard.propTypes = {
   title: PropTypes.string,
   rating: PropTypes.number,
   overview: PropTypes.string,
+  user: PropTypes.object,
   favorites: PropTypes.array.isRequired,
   addFavorite: PropTypes.func.isRequired,
   removeFavorites: PropTypes.func
