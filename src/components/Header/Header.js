@@ -12,8 +12,9 @@ import PropTypes from 'prop-types';
 export class Header extends Component{
 
   componentWillUpdate(nextProps) {
-    if (nextProps.location.pathname === '/signin'
-      && nextProps.signedIn === true) {
+    if (
+      nextProps.location.pathname === '/signin' && nextProps.signedIn === true
+    ) {
       this.props.history.push('/');
     }
   }
@@ -67,12 +68,12 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 Header.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: PropTypes.object,
   signedIn: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
-  favorites: PropTypes.array.isRequired,
+  favorites: PropTypes.number,
   signOut: PropTypes.func.isRequired,
-  changeRoute: PropTypes.func.isRequired,
+  changeRoute: PropTypes.func,
   signInSuccess: PropTypes.func,
   retrieveFavorites: PropTypes.func
 

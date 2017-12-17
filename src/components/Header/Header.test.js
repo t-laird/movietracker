@@ -2,6 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Header } from './Header';
 
+global.localStorage = {
+  getItem: () => null,
+  setItem: () => null
+};
+
 
 describe('header tests', () => {
   let headerContainer;
@@ -44,5 +49,25 @@ describe('header tests', () => {
     signOutButton.simulate('click');
 
     expect(mockProps.signOut).toHaveBeenCalled();
+  });
+
+  it('should call signInSuccess & retrieveFavorites if there is a user in localStorage', () => {
+    const mockSignInSuccess = jest.fn();
+    const mockRetrieveFavorites = jest.fn();
+    
+    global.localStorage = {
+      getItem: () => JSON.stringify({id: 3}),
+      setItem: () => null
+    };
+    
+    headerContainer = shallow(
+      <Header 
+        {...mockProps}
+        signInSuccess={mockSignInSuccess}
+        retrieveFavorites={mockRetrieveFavorites} />
+    );
+
+    expect(mockSignInSuccess).toHaveBeenCalled();
+    expect(mockRetrieveFavorites).toHaveBeenCalled();
   });
 });
