@@ -1,0 +1,1178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests for MovieCard component component tests should match the snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MovieCard
+    addFavorite={[Function]}
+    favorites={Array []}
+    movie={
+        Object {
+            "adult": false,
+            "backdrop_path": "/askg3SMvhqEl4OL52YuvdtY40Yb.jpg",
+            "genre_ids": Array [
+              10751,
+              16,
+              12,
+            ],
+            "id": 354912,
+            "original_language": "en",
+            "original_title": "Coco",
+            "overview": "Despite his family’s baffling generations-old ban on music, Miguel dreams of becoming an accomplished musician like his idol, Ernesto de la Cruz. Desperate to prove his talent, Miguel finds himself in the stunning and colorful Land of the Dead following a mysterious chain of events. Along the way, he meets charming trickster Hector, and together, they set off on an extraordinary journey to unlock the real story behind Miguel's family history.",
+            "popularity": 566.134415,
+            "poster_path": "/eKi8dIrr8voobbaGzDpe8w0PVbC.jpg",
+            "release_date": "2017-10-27",
+            "title": "Coco",
+            "video": false,
+            "vote_average": 7.6,
+            "vote_count": 483,
+          }
+    }
+    removeFavorite={[Function]}
+    user={
+        Object {
+            "error": false,
+            "signedIn": true,
+            "userData": Object {
+              "email": "abc",
+              "id": 3,
+              "name": "abc",
+            },
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <div
+        className="inner-card-container"
+>
+        <article
+                className="card-front face"
+        >
+                <img
+                        alt="movie poster"
+                        src="https://image.tmdb.org/t/p/w500undefined"
+                />
+                <div
+                        className="bottom-container"
+                >
+                        <button
+                                onClick={[Function]}
+                        >
+                                Favorite
+                                <i
+                                        className="icon-star-empty"
+                                />
+                        </button>
+                        <h1
+                                className=""
+                        />
+                        <button
+                                onClick={[Function]}
+                        >
+                                More Info
+                                <i
+                                        className="icon-exchange"
+                                />
+                        </button>
+                </div>
+        </article>
+        <article
+                className="card-back face"
+        >
+                <div
+                        className="top-section"
+                >
+                        <div
+                                className="top-row"
+                        >
+                                <h1 />
+                                <p
+                                        className="rating"
+                                />
+                        </div>
+                        <p />
+                </div>
+                <div
+                        className="bottom-container"
+                >
+                        <button
+                                onClick={[Function]}
+                        >
+                                Favorite
+                                <i
+                                        className="icon-star-empty"
+                                />
+                        </button>
+                        <h1
+                                className=""
+                        />
+                        <button
+                                onClick={[Function]}
+                        >
+                                More Info
+                                <i
+                                        className="icon-exchange"
+                                />
+                        </button>
+                </div>
+        </article>
+</div>,
+      "className": "outer-card-container ",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <article
+            className="card-front face"
+>
+            <img
+                        alt="movie poster"
+                        src="https://image.tmdb.org/t/p/w500undefined"
+            />
+            <div
+                        className="bottom-container"
+            >
+                        <button
+                                    onClick={[Function]}
+                        >
+                                    Favorite
+                                    <i
+                                                className="icon-star-empty"
+                                    />
+                        </button>
+                        <h1
+                                    className=""
+                        />
+                        <button
+                                    onClick={[Function]}
+                        >
+                                    More Info
+                                    <i
+                                                className="icon-exchange"
+                                    />
+                        </button>
+            </div>
+</article>,
+          <article
+            className="card-back face"
+>
+            <div
+                        className="top-section"
+            >
+                        <div
+                                    className="top-row"
+                        >
+                                    <h1 />
+                                    <p
+                                                className="rating"
+                                    />
+                        </div>
+                        <p />
+            </div>
+            <div
+                        className="bottom-container"
+            >
+                        <button
+                                    onClick={[Function]}
+                        >
+                                    Favorite
+                                    <i
+                                                className="icon-star-empty"
+                                    />
+                        </button>
+                        <h1
+                                    className=""
+                        />
+                        <button
+                                    onClick={[Function]}
+                        >
+                                    More Info
+                                    <i
+                                                className="icon-exchange"
+                                    />
+                        </button>
+            </div>
+</article>,
+        ],
+        "className": "inner-card-container",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <img
+                alt="movie poster"
+                src="https://image.tmdb.org/t/p/w500undefined"
+/>,
+              <div
+                className="bottom-container"
+>
+                <button
+                                onClick={[Function]}
+                >
+                                Favorite
+                                <i
+                                                className="icon-star-empty"
+                                />
+                </button>
+                <h1
+                                className=""
+                />
+                <button
+                                onClick={[Function]}
+                >
+                                More Info
+                                <i
+                                                className="icon-exchange"
+                                />
+                </button>
+</div>,
+            ],
+            "className": "card-front face",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "alt": "movie poster",
+                "src": "https://image.tmdb.org/t/p/w500undefined",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "img",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <button
+                    onClick={[Function]}
+>
+                    Favorite
+                    <i
+                                        className="icon-star-empty"
+                    />
+</button>,
+                  <h1
+                    className=""
+/>,
+                  <button
+                    onClick={[Function]}
+>
+                    More Info
+                    <i
+                                        className="icon-exchange"
+                    />
+</button>,
+                ],
+                "className": "bottom-container",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      "Favorite",
+                      <i
+                        className="icon-star-empty"
+/>,
+                    ],
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "Favorite",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "icon-star-empty",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "i",
+                    },
+                  ],
+                  "type": "button",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": undefined,
+                    "className": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "h1",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      "More Info",
+                      <i
+                        className="icon-exchange"
+/>,
+                    ],
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "More Info",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "icon-exchange",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "i",
+                    },
+                  ],
+                  "type": "button",
+                },
+              ],
+              "type": "div",
+            },
+          ],
+          "type": "article",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="top-section"
+>
+                <div
+                                className="top-row"
+                >
+                                <h1 />
+                                <p
+                                                className="rating"
+                                />
+                </div>
+                <p />
+</div>,
+              <div
+                className="bottom-container"
+>
+                <button
+                                onClick={[Function]}
+                >
+                                Favorite
+                                <i
+                                                className="icon-star-empty"
+                                />
+                </button>
+                <h1
+                                className=""
+                />
+                <button
+                                onClick={[Function]}
+                >
+                                More Info
+                                <i
+                                                className="icon-exchange"
+                                />
+                </button>
+</div>,
+            ],
+            "className": "card-back face",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="top-row"
+>
+                    <h1 />
+                    <p
+                                        className="rating"
+                    />
+</div>,
+                  <p />,
+                ],
+                "className": "top-section",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <h1 />,
+                      <p
+                        className="rating"
+/>,
+                    ],
+                    "className": "top-row",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": undefined,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "h1",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": undefined,
+                        "className": "rating",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "p",
+                    },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": undefined,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "p",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <button
+                    onClick={[Function]}
+>
+                    Favorite
+                    <i
+                                        className="icon-star-empty"
+                    />
+</button>,
+                  <h1
+                    className=""
+/>,
+                  <button
+                    onClick={[Function]}
+>
+                    More Info
+                    <i
+                                        className="icon-exchange"
+                    />
+</button>,
+                ],
+                "className": "bottom-container",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      "Favorite",
+                      <i
+                        className="icon-star-empty"
+/>,
+                    ],
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "Favorite",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "icon-star-empty",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "i",
+                    },
+                  ],
+                  "type": "button",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": undefined,
+                    "className": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "h1",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      "More Info",
+                      <i
+                        className="icon-exchange"
+/>,
+                    ],
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "More Info",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "icon-exchange",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "i",
+                    },
+                  ],
+                  "type": "button",
+                },
+              ],
+              "type": "div",
+            },
+          ],
+          "type": "article",
+        },
+      ],
+      "type": "div",
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <div
+          className="inner-card-container"
+>
+          <article
+                    className="card-front face"
+          >
+                    <img
+                              alt="movie poster"
+                              src="https://image.tmdb.org/t/p/w500undefined"
+                    />
+                    <div
+                              className="bottom-container"
+                    >
+                              <button
+                                        onClick={[Function]}
+                              >
+                                        Favorite
+                                        <i
+                                                  className="icon-star-empty"
+                                        />
+                              </button>
+                              <h1
+                                        className=""
+                              />
+                              <button
+                                        onClick={[Function]}
+                              >
+                                        More Info
+                                        <i
+                                                  className="icon-exchange"
+                                        />
+                              </button>
+                    </div>
+          </article>
+          <article
+                    className="card-back face"
+          >
+                    <div
+                              className="top-section"
+                    >
+                              <div
+                                        className="top-row"
+                              >
+                                        <h1 />
+                                        <p
+                                                  className="rating"
+                                        />
+                              </div>
+                              <p />
+                    </div>
+                    <div
+                              className="bottom-container"
+                    >
+                              <button
+                                        onClick={[Function]}
+                              >
+                                        Favorite
+                                        <i
+                                                  className="icon-star-empty"
+                                        />
+                              </button>
+                              <h1
+                                        className=""
+                              />
+                              <button
+                                        onClick={[Function]}
+                              >
+                                        More Info
+                                        <i
+                                                  className="icon-exchange"
+                                        />
+                              </button>
+                    </div>
+          </article>
+</div>,
+        "className": "outer-card-container ",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <article
+              className="card-front face"
+>
+              <img
+                            alt="movie poster"
+                            src="https://image.tmdb.org/t/p/w500undefined"
+              />
+              <div
+                            className="bottom-container"
+              >
+                            <button
+                                          onClick={[Function]}
+                            >
+                                          Favorite
+                                          <i
+                                                        className="icon-star-empty"
+                                          />
+                            </button>
+                            <h1
+                                          className=""
+                            />
+                            <button
+                                          onClick={[Function]}
+                            >
+                                          More Info
+                                          <i
+                                                        className="icon-exchange"
+                                          />
+                            </button>
+              </div>
+</article>,
+            <article
+              className="card-back face"
+>
+              <div
+                            className="top-section"
+              >
+                            <div
+                                          className="top-row"
+                            >
+                                          <h1 />
+                                          <p
+                                                        className="rating"
+                                          />
+                            </div>
+                            <p />
+              </div>
+              <div
+                            className="bottom-container"
+              >
+                            <button
+                                          onClick={[Function]}
+                            >
+                                          Favorite
+                                          <i
+                                                        className="icon-star-empty"
+                                          />
+                            </button>
+                            <h1
+                                          className=""
+                            />
+                            <button
+                                          onClick={[Function]}
+                            >
+                                          More Info
+                                          <i
+                                                        className="icon-exchange"
+                                          />
+                            </button>
+              </div>
+</article>,
+          ],
+          "className": "inner-card-container",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <img
+                  alt="movie poster"
+                  src="https://image.tmdb.org/t/p/w500undefined"
+/>,
+                <div
+                  className="bottom-container"
+>
+                  <button
+                                    onClick={[Function]}
+                  >
+                                    Favorite
+                                    <i
+                                                      className="icon-star-empty"
+                                    />
+                  </button>
+                  <h1
+                                    className=""
+                  />
+                  <button
+                                    onClick={[Function]}
+                  >
+                                    More Info
+                                    <i
+                                                      className="icon-exchange"
+                                    />
+                  </button>
+</div>,
+              ],
+              "className": "card-front face",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "alt": "movie poster",
+                  "src": "https://image.tmdb.org/t/p/w500undefined",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "img",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <button
+                      onClick={[Function]}
+>
+                      Favorite
+                      <i
+                                            className="icon-star-empty"
+                      />
+</button>,
+                    <h1
+                      className=""
+/>,
+                    <button
+                      onClick={[Function]}
+>
+                      More Info
+                      <i
+                                            className="icon-exchange"
+                      />
+</button>,
+                  ],
+                  "className": "bottom-container",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        "Favorite",
+                        <i
+                          className="icon-star-empty"
+/>,
+                      ],
+                      "onClick": [Function],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "Favorite",
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "icon-star-empty",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "i",
+                      },
+                    ],
+                    "type": "button",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": undefined,
+                      "className": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "h1",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        "More Info",
+                        <i
+                          className="icon-exchange"
+/>,
+                      ],
+                      "onClick": [Function],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "More Info",
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "icon-exchange",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "i",
+                      },
+                    ],
+                    "type": "button",
+                  },
+                ],
+                "type": "div",
+              },
+            ],
+            "type": "article",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="top-section"
+>
+                  <div
+                                    className="top-row"
+                  >
+                                    <h1 />
+                                    <p
+                                                      className="rating"
+                                    />
+                  </div>
+                  <p />
+</div>,
+                <div
+                  className="bottom-container"
+>
+                  <button
+                                    onClick={[Function]}
+                  >
+                                    Favorite
+                                    <i
+                                                      className="icon-star-empty"
+                                    />
+                  </button>
+                  <h1
+                                    className=""
+                  />
+                  <button
+                                    onClick={[Function]}
+                  >
+                                    More Info
+                                    <i
+                                                      className="icon-exchange"
+                                    />
+                  </button>
+</div>,
+              ],
+              "className": "card-back face",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="top-row"
+>
+                      <h1 />
+                      <p
+                                            className="rating"
+                      />
+</div>,
+                    <p />,
+                  ],
+                  "className": "top-section",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <h1 />,
+                        <p
+                          className="rating"
+/>,
+                      ],
+                      "className": "top-row",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": undefined,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "h1",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": undefined,
+                          "className": "rating",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "p",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": undefined,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "p",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <button
+                      onClick={[Function]}
+>
+                      Favorite
+                      <i
+                                            className="icon-star-empty"
+                      />
+</button>,
+                    <h1
+                      className=""
+/>,
+                    <button
+                      onClick={[Function]}
+>
+                      More Info
+                      <i
+                                            className="icon-exchange"
+                      />
+</button>,
+                  ],
+                  "className": "bottom-container",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        "Favorite",
+                        <i
+                          className="icon-star-empty"
+/>,
+                      ],
+                      "onClick": [Function],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "Favorite",
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "icon-star-empty",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "i",
+                      },
+                    ],
+                    "type": "button",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": undefined,
+                      "className": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "h1",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        "More Info",
+                        <i
+                          className="icon-exchange"
+/>,
+                      ],
+                      "onClick": [Function],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "More Info",
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "icon-exchange",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "i",
+                      },
+                    ],
+                    "type": "button",
+                  },
+                ],
+                "type": "div",
+              },
+            ],
+            "type": "article",
+          },
+        ],
+        "type": "div",
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
