@@ -1,8 +1,10 @@
 import * as actions from '../index';
+import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk';
-
-// const middlewares = [thunk]
-// const mockStore = configureMockStore(middlewares)
+import { signInAndFavorites } from '../index';
+    
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('all actions', () => {
   describe('signin related actions', () => {
@@ -34,7 +36,7 @@ describe('all actions', () => {
         errorMessage: mockError
       };
 
-       expect(actions.signInFailure(mockError)).toEqual(expectedRes);
+      expect(actions.signInFailure(mockError)).toEqual(expectedRes);
     });
 
     it('has a type of SIGN_OUT', () => {
@@ -45,39 +47,100 @@ describe('all actions', () => {
       expect(actions.signOut()).toEqual(expectedRes);
     });
 
-    it('posts to /api/users/new when a signUpAttempt is made', async () => {
-  //     window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
-  //       status: 200,
-  //       json: () => Promise.resolve(
-  //         {
-  //           "status": "success",
-  //           "message": "New user created",
-  //           "id": 4
-  //         }
-  //       )
-  //     })
-  //   );
+    it.skip('posts to /api/users/new when a signUpAttempt is made', async () => {
+      // window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
+      //   status: 200,
+      //   json: () => Promise.resolve(
+      //     {
+      //       "status": "success",
+      //       "message": "New user created",
+      //       "id": 4
+      //     }
+      //   )
+      // }));
+
+    
+      // const mockUserObject = {
+      //   data: {
+      //     email: "123",
+      //     id: 2,
+      //     name: "123",
+      //     password: "123"
+      //   },
+      //   message: "Retrieved ONE User",
+      //   status: "success"
+      // };
+
+      // const store = mockStore({ favorites: [], SignIn: {error: null, signedIn: false, userData: mockUserObject} });
       
-  //   actions.signUpAttempt('thomas, email, pass');
-  //   const middlewares = [thunk]
-  //   const mockStore = configureMockStore(middlewares);
-    
-    
-  // const expectedActions = [
-  //   { type: types.FETCH_TODOS_REQUEST },
-  //   { type: types.FETCH_TODOS_SUCCESS, body: { todos: ['do something'] } }
-  // ];
+      // const testRun = store.dispatch(actions.signUpAttempt('email', 'pass'))
+      //   .then(()=> {
+      //     console.log(window.fetch.mock.calls);
+      //   });
 
-  // const store = mockStore({ todos: [] })
-
-  // return store.dispatch(actions.fetchTodos()).then(() => {
-  //   // return of async actions
-  //   expect(store.getActions()).toEqual  (expectedActions)
-  // })
+      // expect(window.fetch).toHaveBeenCalled();
 
     });
 
+    it.skip('calls in signInSuccess & updateFavorites on succesful signin', () => {
+      // const mockUserObject = {
+      //   data: {
+      //     email: "123",
+      //     id: 2,
+      //     name: "123",
+      //     password: "123"
+      //   },
+      //   message: "Retrieved ONE User",
+      //   status: "success"
+      // };  
+      // const store = mockStore({ favorites: [], SignIn: {error: null, signedIn: false, userData: mockUserObject} });
+        
+      // const expectedActions = [
+      //   {type: 'SIGNIN_SUCCESS', mockUserObject},
+      //   {type: 'UPDATE_FAVORITES', id: 2}
+      // ];
 
+      // console.log(store.getActions());
+
+      // store.dispatch(signInAndFavorites(mockUserObject))
+      //   .then(() => {
+      //     expect(store.getActions()).toEqual(expectedActions);
+      //   })
+    });
+
+    it('has a type of SIGNUP_FAILURE', () => {
+      const expectedRes = {
+        type: "SIGN_UP_FAILURE",
+        error: 'no bueno'
+      };
+
+      expect(actions.signUpFailure('no bueno')).toEqual(expectedRes); 
+    });
+
+    it('has a type of SIGN_UP_SUCCESS', async () => {
+      const mockUser = {
+        email: "123",
+        id: 4,
+        name: "123",
+        password: "123"
+      };
+      const expectedRes = {
+        type: 'SIGN_UP_SUCCESS',
+        newUser: mockUser
+      };
+      window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(
+          {
+            "status": "success",
+            "message": "fetched all users",
+            "data": [mockUser]
+          }
+        )
+      }));
+      const signUpSuccessRes = await actions.signUpSuccess(4);
+      expect(signUpSuccessRes).toEqual(expectedRes);
+    });
   });
 
   describe('Movie actions', () => {
@@ -94,7 +157,7 @@ describe('all actions', () => {
     it('has a type of MOVIES_HAS_ERRORED', () => {
       const hasErrored = true;
       const expected = {
-        type: 'MOVIES_HAS_ERRORED',
+        type: 'MOVIES_HAS_ERRORED'
       };
       expect(actions.moviesHasErrored(hasErrored)).toEqual(expected);
     });
