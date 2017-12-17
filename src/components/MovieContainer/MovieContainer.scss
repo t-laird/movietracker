@@ -44,7 +44,9 @@ section {
 
 @media screen and (max-width: 620px) {
   section {
-    max-width: 310px;
-    width: 310px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;    
+    justify-content: center;
   }
 }
