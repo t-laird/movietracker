@@ -102,8 +102,10 @@
               }
               p {
                 font-size: 50px;
+                height: 100px;
+                width: 100px;
+                box-sizing: border-box;
                 margin: 0px;
-                padding-right: 10px;
               }
             }
             p {
@@ -169,7 +171,6 @@
 .outer-card-container.flip {
   .inner-card-container {
     transform: rotateY(180deg);
-    box-shadow: -4px 4px 4px rgba(0,0,0,0.2);    
-    
+    box-shadow: -4px 4px 4px rgba(0,0,0,0.2);
    }  
  }

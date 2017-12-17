@@ -1,8 +1,10 @@
+/* eslint-disable id-blacklist*/
+
 import React, {Component} from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signOutEmptyFavorites } from '../../Actions';
+import { signOutEmptyFavorites, updateFavorites, signInSuccess } from '../../Actions';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
@@ -13,6 +15,15 @@ export class Header extends Component{
     if (nextProps.location.pathname === '/signin'
       && nextProps.signedIn === true) {
       this.props.history.push('/');
+    }
+  }
+
+  componentDidMount() {
+    const attemptLocalStorage = localStorage.getItem('xyz123MTracker');
+    if (attemptLocalStorage) {
+      const userInfo = JSON.parse(attemptLocalStorage);
+      this.props.signInSuccess({data: userInfo});
+      this.props.retrieveFavorites(userInfo.id);
     }
   }
 
@@ -50,7 +61,9 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(signOutEmptyFavorites()),
-  changeRoute: (url) => dispatch(push(url))
+  changeRoute: (url) => dispatch(push(url)),
+  signInSuccess: (userObj) => dispatch(signInSuccess(userObj)),
+  retrieveFavorites: (userId) => dispatch(updateFavorites(userId))
 });
 
 Header.propTypes = {
@@ -59,7 +72,10 @@ Header.propTypes = {
   userName: PropTypes.string.isRequired,
   favorites: PropTypes.array.isRequired,
   signOut: PropTypes.func.isRequired,
-  changeRoute: PropTypes.func.isRequired
+  changeRoute: PropTypes.func.isRequired,
+  signInSuccess: PropTypes.func,
+  retrieveFavorites: PropTypes.func
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -1,6 +1,36 @@
 section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     padding: 1.5%;
+    margin: 0px auto;
+    max-width: 1550px;
+    width: 1550px;
+}
+
+@media screen and (max-width: 1550px) {
+  section {
+    max-width: 1240px;
+    width: 1240px;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  section {
+    max-width: 930px;
+    width: 930px;
+  }
+}
+
+@media screen and (max-width: 930px) {
+  section {
+    max-width: 620px;
+    width: 620px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  section {
+    max-width: 310px;
+    width: 310px;
+  }
 }
