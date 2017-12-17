@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
 import { fetchMovieList } from '../../Actions';
+import { Link } from 'react-router-dom';
 import './MovieContainer.css';
 import PropTypes from 'prop-types';
 
@@ -24,10 +25,31 @@ class MovieContainer extends Component {
         title={movie.title}
         overview={movie.overview}
         rating={movie.vote_average}
-        movie={movie} />)
-    })
+        movie={movie} />);
+    });
+    
+    if (
+      !this.props.userData.signedIn && 
+      location==='/favorites'
+    ) {
+      return (
+        <h3 className="favorites-warning">Please Login 
+          <Link to="/signin">Here</Link>
+          to add Favorites</h3>
+      );
+    } else if (
+      this.props.userData.signedIn && 
+      location==='/favorites' && 
+      !movieCardsArray.length
+    ) {
+      return (
+        <h3 className="favorites-warning">You don&#39;t have any favorites! Return home
+          <Link to="/">here</Link> 
+            and add some!</h3>
+      );
+    }
 
-    return movieCardsArray
+    return movieCardsArray;
   }
 
   render() {
@@ -44,7 +66,8 @@ const mapStateToProps = (state) => {
     movies: state.movies,
     favorites: state.favorites,
     hasErrored: state.moviesHasErrored,
-    isLoading: state.moviesIsLoading
+    isLoading: state.moviesIsLoading,
+    userData: state.SignIn
   };
 };
 
@@ -61,7 +84,8 @@ MovieContainer.propTypes = {
   hasErrored: PropTypes.bool,
   isLoading: PropTypes.bool,
   favorites: PropTypes.array.isRequired,
-  fetchMovieList: PropTypes.func.isRequired
+  fetchMovieList: PropTypes.func.isRequired,
+  userData: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieContainer);
