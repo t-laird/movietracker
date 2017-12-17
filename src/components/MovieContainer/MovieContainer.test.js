@@ -14,7 +14,7 @@ describe('MovieContainer', () => {
     it('should call handleSubmit on submitForm', () => {
       const mockHandleSubmit = jest.fn()
       const mockEvent = { preventDefault: jest.fn() }
-      const renderedComponent = shallow(<AddTodoForm
+      const renderedComponent = shallow(<MovieContainer />
         handleSubmit={mockHandleSubmit}
       />)
       renderedComponent.instance().submitForm(mockEvent)
@@ -24,7 +24,7 @@ describe('MovieContainer', () => {
     it('should call handleRemove on removedClicked', () => {
       const mockHandleRemove = jest.fn()
       const mockEvent = { preventDefault: jest.fn() }
-      const renderedComponent = shallow(<AddTodoForm
+      const renderedComponent = shallow(<MovieContainer
         handleRemove={mockHandleRemove}
       />)
       renderedComponent.instance().removedClicked(mockEvent, 0)
@@ -33,7 +33,7 @@ describe('MovieContainer', () => {
 
     it('should build html when printTodos is called', () => {
       const mockTodos = [{ text: 'Wrestle a wombat', id: 0 }]
-      const renderedComponent = shallow(<AddTodoForm
+      const renderedComponent = shallow(<MovieContainer
         todos={mockTodos}
       />)
       const expected = [
