@@ -5,6 +5,20 @@ section {
     margin: 0px auto;
     max-width: 1550px;
     width: 1550px;
+    h3.favorites-warning {
+      font-size: 80px;
+      background-color: rgba(255, 255, 255, 0.906);
+      padding: 30px;
+      border-radius: 10px;
+      margin: 0px auto;
+      a {
+        color: blue;
+        padding: 0px 14px;
+        &:hover {
+          color: purple;
+        }
+      }
+    }
 }
 
 @media screen and (max-width: 1550px) {
