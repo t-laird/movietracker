@@ -1,28 +1,30 @@
 /*eslint-disable no-case-declarations*/
 
 const defaultState =
-        Object.assign(
-          {},
-          {signedIn: false},
-          {error: false},
-          {userData: {name: '', email: '', id: ''}});
+  Object.assign(
+    {},
+    {signedIn: false},
+    {error: false},
+    {userData: {name: '', email: '', id: ''}}
+  );
 
 const SignIn = (state = defaultState, action) => {
   switch (action.type) {
   case 'SIGNIN_SUCCESS':
     const { userObject } = action;
     const dataResponse = userObject.data;
-    const userData = Object.assign(
+    const userData = {
+      name: dataResponse.name,
+      email: dataResponse.email,
+      id: dataResponse.id };
+
+    localStorage.setItem('xyz123MTracker', JSON.stringify(userData));
+    return Object.assign(
       {},
       {signedIn: true},
-      {
-        name: dataResponse.name,
-        email: dataResponse.email,
-        id: dataResponse.id
-      },
+      {userData: userData},
       {error: false}
     );
-    return {signedIn: true, userData};
   case 'SIGNIN_FAILURE':
     return Object.assign(
       {},
@@ -31,6 +33,7 @@ const SignIn = (state = defaultState, action) => {
       {error: 'username or password is incorrect'}
     );
   case 'SIGN_OUT':
+    localStorage.removeItem('xyz123MTracker');
     return Object.assign(
       {},
       {signedIn: false},
