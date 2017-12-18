@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieContainer tests should match the snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MovieContainer
+    favorites={
+        Array [
+            Object {
+              "id": 12345,
+              "title": "Movie",
+            },
+          ]
+    }
+    fetchMovieList={[Function]}
+    hasErrored={false}
+    isLoading={false}
+    location={Object {}}
+    movies={
+        Object {
+            "movies": Array [
+              Object {
+                "id": 57203,
+                "title": "Movie",
+              },
+            ],
+          }
+    }
+    userData={
+        Object {
+            "error": false,
+            "signedIn": true,
+            "userData": Object {
+              "email": "123",
+              "id": 2,
+              "name": "123",
+            },
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Connect(MovieCard)
+          movie={
+                    Object {
+                              "id": 57203,
+                              "title": "Movie",
+                            }
+          }
+          overview={undefined}
+          poster={undefined}
+          rating={undefined}
+          title="Movie"
+/>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "57203",
+        "nodeType": "class",
+        "props": Object {
+          "movie": Object {
+            "id": 57203,
+            "title": "Movie",
+          },
+          "overview": undefined,
+          "poster": undefined,
+          "rating": undefined,
+          "title": "Movie",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "section",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Connect(MovieCard)
+            movie={
+                        Object {
+                                    "id": 57203,
+                                    "title": "Movie",
+                                  }
+            }
+            overview={undefined}
+            poster={undefined}
+            rating={undefined}
+            title="Movie"
+/>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "57203",
+          "nodeType": "class",
+          "props": Object {
+            "movie": Object {
+              "id": 57203,
+              "title": "Movie",
+            },
+            "overview": undefined,
+            "poster": undefined,
+            "rating": undefined,
+            "title": "Movie",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "section",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

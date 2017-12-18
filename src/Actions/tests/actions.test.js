@@ -4,7 +4,7 @@
 import * as actions from '../index';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-    
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
@@ -61,7 +61,7 @@ describe('all actions', () => {
         )
       }));
 
-    
+
       const mockUserObject = {
         data: {
           email: "123",
@@ -74,7 +74,7 @@ describe('all actions', () => {
       };
 
       const store = mockStore({ favorites: [], SignIn: {error: null, signedIn: false, userData: mockUserObject} });
-      
+
       store.dispatch(actions.signUpAttempt('email', 'pass'))
         .then(()=> {
           expect(window.fetch).toHaveBeenCalled();
@@ -83,7 +83,7 @@ describe('all actions', () => {
 
     });
 
-    it.skip('calls in signInSuccess & updateFavorites on succesful signin', () => {
+    it.skip('calls signInSuccess & updateFavorites on succesful signin', () => {
       const mockUserObject = {
         data: {
           email: "123",
@@ -93,9 +93,9 @@ describe('all actions', () => {
         },
         message: "Retrieved ONE User",
         status: "success"
-      };  
+      };
       const store = mockStore({ favorites: [], SignIn: {error: null, signedIn: false, userData: mockUserObject} });
-        
+
       const expectedActions = [
         {type: 'SIGNIN_SUCCESS', mockUserObject},
         {type: 'UPDATE_FAVORITES', id: 2}
@@ -113,7 +113,7 @@ describe('all actions', () => {
         error: 'no bueno'
       };
 
-      expect(actions.signUpFailure('no bueno')).toEqual(expectedRes); 
+      expect(actions.signUpFailure('no bueno')).toEqual(expectedRes);
     });
 
     it('has a type of SIGN_UP_SUCCESS', async () => {
@@ -152,7 +152,6 @@ describe('all actions', () => {
       expect(actions.moviesIsLoading(isLoading)).toEqual(expected);
     });
 
-    // REMOVE_TODO
     it('has a type of MOVIES_HAS_ERRORED', () => {
       const hasErrored = true;
       const expected = {
@@ -170,9 +169,41 @@ describe('all actions', () => {
       };
       expect(actions.moviesFetchDataSuccess(movies)).toEqual(expected);
     });
+  });
 
-    it('should fetch a movielist', () => {
+  describe('favorite actions', () => {
+    it('updateFavorites returns an action with type of UPDATE_FAVORITES', async () => {
+      const favorites = [{ title: 'Casper' }, { title: 'Thor' }, { title: 'Batman' }];
+      const expected = {
+        type: 'UPDATE_FAVORITES',
+        favoritesData: favorites
+      };
 
+      window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(
+          {
+            data: [
+              { title: 'Casper' }, { title: 'Thor' }, { title: 'Batman' }
+            ],
+            message: "Retrieved All favorites",
+            status: "success"
+          }
+        )
+      }));
+
+      const favoriteSetRes = await actions.updateFavorites(3);
+      expect(favoriteSetRes).toEqual(expected);
+    });
+
+    it('clearFavorites returns an obj with type of CLEAR_FAVORITES', () => {
+      const expected = {
+        type: 'EMPTY_FAVORITES'
+      };
+
+      const emptyFavsRes = actions.emptyFavorites();
+
+      expect(emptyFavsRes).toEqual(expected);
     });
   });
 });
