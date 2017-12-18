@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Header } from './Header';
@@ -18,7 +20,7 @@ describe('header tests', () => {
       signedIn: true,
       userName: 'jim',
       shouldShowFavorites: true,
-      favorites: 3
+      favorites: []
     };
     headerContainer = shallow(<Header {...mockProps}/>);
   });
@@ -33,7 +35,7 @@ describe('header tests', () => {
     const expectedLinkLength = 3;
 
     expect(headerContainer.find('h1').length).toEqual(expectedH1Length);
-    expect(headerContainer.find('h2').length).toEqual(expectedH1Length);
+    expect(headerContainer.find('h2').length).toEqual(expectedH2Length);
     expect(headerContainer.find('Link').length).toEqual(expectedLinkLength);
   });
 

@@ -1,8 +1,11 @@
+/* eslint-disable max-len */
+/* eslint-disable id-blacklist */
+
 import SignInReducer from '../SignIn';
 import * as actions from '../../Actions';
 
 describe('Tests related to signin reducer', () => {
-  it ('should return the default state', () => {
+  it('should return the default state', () => {
     const expected =  Object.assign(
       {},
       {signedIn: false},
@@ -12,7 +15,7 @@ describe('Tests related to signin reducer', () => {
     expect(SignInReducer(undefined, {})).toEqual(expected);
   });
 
-  it ('should return an action object with updated user information when receiving an action of SIGNIN_SUCCESS', () => {
+  it('should return an action object with updated user information when receiving an action of SIGNIN_SUCCESS', () => {
     const expected = Object.assign(
       {},
       {signedIn: true},
@@ -30,7 +33,7 @@ describe('Tests related to signin reducer', () => {
 
     global.localStorage = {
       setItem: () => null
-    }
+    };
 
     expect(SignInReducer({}, 
       actions.signInSuccess(mockUserObject))).toEqual(expected);
@@ -69,17 +72,13 @@ describe('Tests related to signin reducer', () => {
     expect(SignInReducer(prevState, actions.signOut())).toEqual(expected);
   });
 
-  it('should set the user data properly on SIGN_UP_SUCCESS', () => {
+  it('should set the user data properly on SIGN_UP_SUCCESS', async () => {
     const expected = Object.assign(
       {},
       {signedIn: true},
       {userData: {name: 'h', email: '@', id: 3}},
       {error: false}
     );
-
-    const mockNewUserObject = {
-      newUser: {name: 'h', email: '@', id: 3}
-    };
 
     window.fetch = 
     jest.fn().mockImplementation(() => Promise.resolve({
@@ -89,7 +88,13 @@ describe('Tests related to signin reducer', () => {
       )
     }));
 
-    expect(SignInReducer({}, actions.signUpSuccess(mockNewUserObject.newUser)));
+    global.localStorage = {
+      setItem: () => null
+    };
+
+    const signUpResult = await actions.signUpSuccess(3);
+
+    expect(SignInReducer({}, signUpResult)).toEqual(expected);
   });
 
   it('should push an appropriate error on SIGN_UP_FAILURE', () => {

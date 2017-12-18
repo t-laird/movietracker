@@ -33,7 +33,6 @@ describe('Favorites reducer', () => {
     const mockUserId = [name: 'Sam'];
     const expected = {};
     const handleFavorite = jest.fn();
-
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
       status: 200,
       json: () => Promise.resolve(

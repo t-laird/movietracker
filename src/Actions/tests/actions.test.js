@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
+/* eslint-disable id-blacklist */
+
 import * as actions from '../index';
-import configureMockStore from 'redux-mock-store'
+import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { signInAndFavorites } from '../index';
     
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -48,64 +50,61 @@ describe('all actions', () => {
     });
 
     it.skip('posts to /api/users/new when a signUpAttempt is made', async () => {
-      // window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
-      //   status: 200,
-      //   json: () => Promise.resolve(
-      //     {
-      //       "status": "success",
-      //       "message": "New user created",
-      //       "id": 4
-      //     }
-      //   )
-      // }));
+      window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(
+          {
+            "status": "success",
+            "message": "New user created",
+            "id": 4
+          }
+        )
+      }));
 
     
-      // const mockUserObject = {
-      //   data: {
-      //     email: "123",
-      //     id: 2,
-      //     name: "123",
-      //     password: "123"
-      //   },
-      //   message: "Retrieved ONE User",
-      //   status: "success"
-      // };
+      const mockUserObject = {
+        data: {
+          email: "123",
+          id: 2,
+          name: "123",
+          password: "123"
+        },
+        message: "Retrieved ONE User",
+        status: "success"
+      };
 
-      // const store = mockStore({ favorites: [], SignIn: {error: null, signedIn: false, userData: mockUserObject} });
+      const store = mockStore({ favorites: [], SignIn: {error: null, signedIn: false, userData: mockUserObject} });
       
-      // const testRun = store.dispatch(actions.signUpAttempt('email', 'pass'))
-      //   .then(()=> {
-      //     console.log(window.fetch.mock.calls);
-      //   });
+      store.dispatch(actions.signUpAttempt('email', 'pass'))
+        .then(()=> {
+          expect(window.fetch).toHaveBeenCalled();
+        });
 
-      // expect(window.fetch).toHaveBeenCalled();
 
     });
 
     it.skip('calls in signInSuccess & updateFavorites on succesful signin', () => {
-      // const mockUserObject = {
-      //   data: {
-      //     email: "123",
-      //     id: 2,
-      //     name: "123",
-      //     password: "123"
-      //   },
-      //   message: "Retrieved ONE User",
-      //   status: "success"
-      // };  
-      // const store = mockStore({ favorites: [], SignIn: {error: null, signedIn: false, userData: mockUserObject} });
+      const mockUserObject = {
+        data: {
+          email: "123",
+          id: 2,
+          name: "123",
+          password: "123"
+        },
+        message: "Retrieved ONE User",
+        status: "success"
+      };  
+      const store = mockStore({ favorites: [], SignIn: {error: null, signedIn: false, userData: mockUserObject} });
         
-      // const expectedActions = [
-      //   {type: 'SIGNIN_SUCCESS', mockUserObject},
-      //   {type: 'UPDATE_FAVORITES', id: 2}
-      // ];
+      const expectedActions = [
+        {type: 'SIGNIN_SUCCESS', mockUserObject},
+        {type: 'UPDATE_FAVORITES', id: 2}
+      ];
 
-      // console.log(store.getActions());
-
-      // store.dispatch(signInAndFavorites(mockUserObject))
-      //   .then(() => {
-      //     expect(store.getActions()).toEqual(expectedActions);
-      //   })
+      store.dispatch(actions.signInAndFavorites(mockUserObject))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
     });
 
     it('has a type of SIGNUP_FAILURE', () => {
@@ -148,7 +147,7 @@ describe('all actions', () => {
     it('has a type of MOVIES_IS_LOADING', () => {
       const isLoading = true;
       const expected = {
-        type: 'MOVIES_IS_LOADING',
+        type: 'MOVIES_IS_LOADING'
       };
       expect(actions.moviesIsLoading(isLoading)).toEqual(expected);
     });

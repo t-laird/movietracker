@@ -16,7 +16,8 @@ class SignIn extends Component {
       usernameClass: 'signin-input',
       passwordClass: 'signin-input',
       passwordDisplay: 'password',
-      signup: false
+      signup: false,
+      emailError: null
     };
   }
 
@@ -47,16 +48,27 @@ class SignIn extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     const { nameInputVal, usernameInputVal, passwordInputVal } = this.state;
+    // eslint-disable-next-line
+    const emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'g');
     if (this.state.signup) {
-      if (nameInputVal.length > 2
-          && usernameInputVal.length > 2
-          && passwordInputVal.length > 2) {
-        this.props.signUpForApp(
-          nameInputVal,
-          usernameInputVal,
-          passwordInputVal
-        );
-      }
+      if (
+        nameInputVal.length > 2
+        && usernameInputVal.length > 2
+        && passwordInputVal.length > 2
+      ) {
+        if (!emailRegex.test(usernameInputVal)) {
+          this.setState({
+            emailError: 'please enter a valid email'
+          });
+        } else {
+          this.props.signUpForApp(
+            nameInputVal,
+            usernameInputVal,
+            passwordInputVal
+          );
+        }
+      } 
+
     } else {
       this.props.signInToApp(
         usernameInputVal,
@@ -73,21 +85,26 @@ class SignIn extends Component {
 
   render() {
     const signup = this.state.signup;
-    const signupInput = signup ?
-      <input
-        type="text"
-        className={this.state.nameClass}
-        value={this.state.nameInputVal}
-        onFocus={() => this.inputFocus('name', 'signin-input focused')}
-        onBlur={() => this.inputFocus('name', 'signin-input')}
-        onChange={(event) => this.handleChange(event, 'nameInputVal')}
-        placeholder="Name" /> : null;
+    const signupInput = signup 
+      ? (
+        <input
+          type="text"
+          className={this.state.nameClass}
+          value={this.state.nameInputVal}
+          onFocus={() => this.inputFocus('name', 'signin-input focused')}
+          onBlur={() => this.inputFocus('name', 'signin-input')}
+          onChange={(event) => this.handleChange(event, 'nameInputVal')}
+          placeholder="Name" /> )
+      : null;
 
     const submitText = signup ? "Sign Up!" : "Sign In!";
     const signinToggle = signup ? "Sign In Instead" : "Sign Up Instead";
     const buttonClass = signup ? "up" : "in";
 
     const signinError = this.props.userObject.error;
+    const emailError = this.state.emailError 
+      ? <span className="error">{this.state.emailError}</span> 
+      : null;
 
     const errorStatement = !signinError
       ? null
@@ -99,6 +116,7 @@ class SignIn extends Component {
           <Link to="/" className="sign-in-close">Close</Link>
           {errorStatement}
           {signupInput}
+          {emailError}
           <input
             type="text"
             className={this.state.usernameClass}
