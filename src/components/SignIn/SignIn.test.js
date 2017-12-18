@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import React from 'react';
 import { 
   SignIn,
@@ -99,7 +101,7 @@ describe('mapDispatchToProps tests', () => {
     
     expect(mockDispatch).toHaveBeenCalled();
   });
-  
+
   it('should map dispatch to props for signup functions', () => {
     const mockDispatch = jest.fn();
     const result = mapDispatchToProps(mockDispatch);
