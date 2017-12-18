@@ -30,28 +30,6 @@ class MovieContainer extends Component {
         rating={movie.vote_average}
         movie={movie} />);
     });
-    
-    if (
-      !this.props.userData.signedIn && 
-      location==='/favorites'
-    ) {
-      return (
-        <h3 className="favorites-warning">Please Login 
-          <Link to="/signin">Here</Link>
-          to add Favorites</h3>
-      );
-    } else if (
-      this.props.userData.signedIn && 
-      location==='/favorites' && 
-      !movieCardsArray.length
-    ) {
-      return (
-        <h3 className="favorites-warning">
-          You don&#39;t have any favorites! Return home
-          <Link to="/">here</Link> 
-            and add some!</h3>
-      );
-    }
 
     return movieCardsArray;
   }
