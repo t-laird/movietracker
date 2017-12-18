@@ -4,7 +4,7 @@
 import * as actions from '../index';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-    
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
@@ -61,7 +61,7 @@ describe('all actions', () => {
         )
       }));
 
-    
+
       const mockUserObject = {
         data: {
           email: "123",
@@ -74,7 +74,7 @@ describe('all actions', () => {
       };
 
       const store = mockStore({ favorites: [], SignIn: {error: null, signedIn: false, userData: mockUserObject} });
-      
+
       store.dispatch(actions.signUpAttempt('email', 'pass'))
         .then(()=> {
           expect(window.fetch).toHaveBeenCalled();
@@ -93,9 +93,9 @@ describe('all actions', () => {
         },
         message: "Retrieved ONE User",
         status: "success"
-      };  
+      };
       const store = mockStore({ favorites: [], SignIn: {error: null, signedIn: false, userData: mockUserObject} });
-        
+
       const expectedActions = [
         {type: 'SIGNIN_SUCCESS', mockUserObject},
         {type: 'UPDATE_FAVORITES', id: 2}
@@ -113,7 +113,7 @@ describe('all actions', () => {
         error: 'no bueno'
       };
 
-      expect(actions.signUpFailure('no bueno')).toEqual(expectedRes); 
+      expect(actions.signUpFailure('no bueno')).toEqual(expectedRes);
     });
 
     it('has a type of SIGN_UP_SUCCESS', async () => {
@@ -152,7 +152,6 @@ describe('all actions', () => {
       expect(actions.moviesIsLoading(isLoading)).toEqual(expected);
     });
 
-    // REMOVE_TODO
     it('has a type of MOVIES_HAS_ERRORED', () => {
       const hasErrored = true;
       const expected = {
