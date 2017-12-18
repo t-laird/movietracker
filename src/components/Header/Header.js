@@ -72,7 +72,7 @@ Header.propTypes = {
   history: PropTypes.object,
   signedIn: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
-  favorites: PropTypes.number,
+  favorites: PropTypes.array,
   signOut: PropTypes.func.isRequired,
   changeRoute: PropTypes.func,
   signInSuccess: PropTypes.func,

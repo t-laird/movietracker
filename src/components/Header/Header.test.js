@@ -18,7 +18,7 @@ describe('header tests', () => {
       signedIn: true,
       userName: 'jim',
       shouldShowFavorites: true,
-      favorites: 3
+      favorites: []
     };
     headerContainer = shallow(<Header {...mockProps}/>);
   });
