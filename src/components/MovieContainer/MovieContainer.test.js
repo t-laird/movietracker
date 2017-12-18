@@ -5,8 +5,6 @@ import  {
   mapDispatchToProps 
 } from './MovieContainer';
 import { shallow } from 'enzyme';
-import * as actions from '../../Actions';
-import { Provider } from 'react-redux';
 
 describe('MovieContainer tests', () => {
   let movieContainer;
@@ -14,16 +12,17 @@ describe('MovieContainer tests', () => {
   beforeEach(() => {
     mockProps = {
       location: {},
-      movies: [{ title: "Movie" }],
-      hasErrored: true,
-      isLoading: true,
-      favorites: [{ title: "Movie" }]
+      movies: {movies: [{ title: "Movie", id: 57203}]},
+      hasErrored: false,
+      isLoading: false,
+      userData: { error: false, signedIn: true, userData: { email: "123", id: 2, name: "123" }},
+      favorites: [{ title: "Movie", id: 12345}],
+      fetchMovieList: jest.fn()
     };
     movieContainer = shallow(
-      <Provider><MovieContainer {...mockProps} /></Provider>
+      <MovieContainer {...mockProps} />
     );
   });
-
 
   it('should match the snapshot', () => {
     expect(movieContainer).toMatchSnapshot();
@@ -33,10 +32,19 @@ describe('MovieContainer tests', () => {
     expect(movieContainer).toBeDefined();
   });
 
-  it.skip('should pull movies from the store', () => {
+  it('should mount with the correct elements', () => {
+    const expectedSectionLength = 1;
+
+    expect(movieContainer.find('section').length).toEqual(expectedSectionLength);
+  });
+});
+
+describe('mapStateToProps tests', () => {
+
+  it('should pull movies from the store', () => {
     const mockStore = {
-      movies: [{ title: "Movie" }],
-      favorites: [{ title: "Movie" }]
+      movies: [{ title: "Movie", id: 12345}, { title: "Movie", id: 67890 }],
+      favorites: [{ title: "Movie", id: 67890}, {title: "Movie", id: 15834}]
     };
     
     const result = mapStateToProps(mockStore);
@@ -44,54 +52,38 @@ describe('MovieContainer tests', () => {
     expect(result.favorites).toEqual(mockStore.favorites);
   });
 
-  it.skip('should mount with the correct elements', () => {
-    const expectedSectionLength = 1;
+  it('should pull proper error/loading status from the store', () => {
+    const mockStore = {
+      moviesHasErrored: false,
+      moviesIsLoading: false
+    };
 
-    expect(movieContainer.find('section').length).toEqual(expectedSectionLength);
+    const result = mapStateToProps(mockStore);
+
+    expect(result.hasErrored).toEqual(mockStore.moviesHasErrored);
+    expect(result.isLoading).toEqual(mockStore.moviesIsLoading);
   });
 
-  it.skip('fetch within componentDidMount', async () => {
-    window.fetch = jest.fn().mockImplementation(() => ({
-      status: 200,
-      json: () => new Promise((resolve) => {
-        resolve({
-          movies: [
-            { title: 'Star Wars', score: 10 }, { title: 'Blade Runner', score: 3 }
-          ]
-        });
-      })
-    }));
+  it('should pull a good user object from the store', () => {
+    const mockStore = {
+      SignIn: {
+        error: false, signedIn: true, userData: { email: "123", id: 2, name: "123" }      
+      }
+    };
 
-    const renderedComponent = await shallow(<Provider><MovieContainer {...mockProps} /></Provider>);
-    await renderedComponent.update();
-    expect(renderedComponent('movies').length).toEqual(2);
+    const result = mapStateToProps(mockStore);
+
+    expect(result.userData).toEqual(mockStore.SignIn);
   });
-
 });
 
+describe('map dispatch to props', () => {
+  it('should map the fetchMovieList function to dispatch', () => {
+    const mockDispatch = jest.fn();
 
+    const result = mapDispatchToProps(mockDispatch);
+    result.fetchMovieList();
 
-
-
-// describe('MovieContianer', () => {
-
-//   describe('componentDidMount', () => {
-
-//     it('sets the state componentDidMount', async () => {
-//       window.fetch = jest.fn().mockImplementation(() => ({
-//         status: 200,
-//         json: () => new Promise((resolve, reject) => {
-//           resolve({
-//             movies: [
-//               { title: 'Star Wars', score: 10 }, { title: 'Blade Runner', score: 3 }
-//             ]
-//           })
-//         })
-//       }))
-
-//       const renderedComponent = await shallow(<MovieContainer />);
-//       await renderedComponent.update();
-//       expect(renderedComponent('movies').length).toEqual(2);
-//     })
-//   })  
-// })
+    expect(mockDispatch).toHaveBeenCalled();
+  });
+});
