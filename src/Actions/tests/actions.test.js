@@ -152,7 +152,6 @@ describe('all actions', () => {
       expect(actions.moviesIsLoading(isLoading)).toEqual(expected);
     });
 
-    // REMOVE_TODO
     it('has a type of MOVIES_HAS_ERRORED', () => {
       const hasErrored = true;
       const expected = {

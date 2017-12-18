@@ -1,8 +1,8 @@
 import React from 'react';
-import { MovieContainer, mapStateToProps, mapDispatchToProps } from './MovieContainer'
+import  { MovieContainer, mapStateToProps, mapDispatchToProps } from './MovieContainer'
 import { shallow } from 'enzyme';
 import * as actions from '../../Actions';
-import Provider from 'react-redux';
+import { Provider } from 'react-redux';
 
 describe('MovieContainer tests', () => {
   let movieContainer;
@@ -10,47 +10,34 @@ describe('MovieContainer tests', () => {
   beforeEach(() => {
     mockProps = {
       location: {},
-      movies: {},
+      movies: [{ title: "Movie" }],
       hasErrored: true,
       isLoading: true,
-      favorites: [],
-      fetchMovieList: jest.fn()
+      favorites: [{ title: "Movie" }]
     };
-    // movieContainer = shallow(<MovieContainer {...mockProps} />);
+    movieContainer = shallow(<Provider><MovieContainer {...mockProps} /></Provider>);
   });
 
 
   it('should match the snapshot', () => {
-    const renderedComponent = shallow(<MovieContainer />)
-    expect(renderedComponent).toMatchSnapshot()
+    expect(movieContainer).toMatchSnapshot();
   })
 
-  it.skip('should render correctly', () => {
+  it('should render correctly', () => {
     expect(movieContainer).toBeDefined();
   });
 
+  it.skip('should pull movies from the store', () => {
+
+    const result = mapStateToProps(mockProps);
+    expect(result.movies).toEqual(mockProps.movies);
+    expect(result.favorites).toEqual(mockProps.favorites);
+  });
+
   it.skip('should be instantiated with the correct children', () => {
-    const expectedH1Length = 1;
-    const expectedH2Length = 1;
-    const expectedLinkLength = 3;
+    const expectedSectionLength = 1;
 
-    expect(movieContainer.find('h1').length).toEqual(expectedH1Length);
-    expect(movieContainer.find('h2').length).toEqual(expectedH1Length);
-    expect(movieContainer.find('Link').length).toEqual(expectedLinkLength);
-  });
-
-  it.skip('should render the user\'s name if signedin is true', () => {
-    const expectedUserName = mockProps.userName;
-
-    expect(movieContainer.find('span').text()).toContain(expectedUserName);
-  });
-
-  it.skip('should call signOut on click of a the signout link', () => {
-    const signOutButton = movieContainer.find('.sign-in-link');
-
-    signOutButton.simulate('click');
-
-    expect(mockProps.signOut).toHaveBeenCalled();
+    expect(movieContainer.find('section').length).toEqual(expectedSectionLength);
   });
 });
 
