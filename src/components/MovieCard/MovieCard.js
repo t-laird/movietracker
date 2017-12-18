@@ -119,7 +119,7 @@ MovieCard.propTypes = {
   movie: PropTypes.object.isRequired,
   poster: PropTypes.string,
   title: PropTypes.string,
-  rating: PropTypes.number,
+  rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   overview: PropTypes.string,
   user: PropTypes.object,
   favorites: PropTypes.array.isRequired,
