@@ -17,7 +17,7 @@ describe('Favorites reducer', () => {
     };
     const mockFavorites = {
       title: 'Star Wars'
-    }
+    };
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
       status: 200,
       json: () => Promise.resolve(

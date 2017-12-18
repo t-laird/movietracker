@@ -1,5 +1,8 @@
+/* eslint-disable max-len */
+/* eslint-disable id-blacklist */
+
 import * as actions from '../index';
-import configureMockStore from 'redux-mock-store'
+import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
     
 const middlewares = [thunk];
@@ -101,7 +104,7 @@ describe('all actions', () => {
       store.dispatch(actions.signInAndFavorites(mockUserObject))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        })
+        });
     });
 
     it('has a type of SIGNUP_FAILURE', () => {
@@ -144,7 +147,7 @@ describe('all actions', () => {
     it('has a type of MOVIES_IS_LOADING', () => {
       const isLoading = true;
       const expected = {
-        type: 'MOVIES_IS_LOADING',
+        type: 'MOVIES_IS_LOADING'
       };
       expect(actions.moviesIsLoading(isLoading)).toEqual(expected);
     });

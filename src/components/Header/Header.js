@@ -4,7 +4,10 @@ import React, {Component} from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signOutEmptyFavorites, updateFavorites, signInSuccess } from '../../Actions';
+import { 
+  signOutEmptyFavorites, 
+  updateFavorites, 
+  signInSuccess } from '../../Actions';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 

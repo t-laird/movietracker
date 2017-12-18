@@ -48,6 +48,7 @@ class SignIn extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     const { nameInputVal, usernameInputVal, passwordInputVal } = this.state;
+    // eslint-disable-next-line
     const emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'g');
     if (this.state.signup) {
       if (
@@ -84,22 +85,27 @@ class SignIn extends Component {
 
   render() {
     const signup = this.state.signup;
-    const signupInput = signup ?
-      <input
-        type="text"
-        className={this.state.nameClass}
-        value={this.state.nameInputVal}
-        onFocus={() => this.inputFocus('name', 'signin-input focused')}
-        onBlur={() => this.inputFocus('name', 'signin-input')}
-        onChange={(event) => this.handleChange(event, 'nameInputVal')}
-        placeholder="Name" /> : null;
+    const signupInput = signup 
+      ? (
+        <input
+          type="text"
+          className={this.state.nameClass}
+          value={this.state.nameInputVal}
+          onFocus={() => this.inputFocus('name', 'signin-input focused')}
+          onBlur={() => this.inputFocus('name', 'signin-input')}
+          onChange={(event) => this.handleChange(event, 'nameInputVal')}
+          placeholder="Name" /> )
+      : null;
 
     const submitText = signup ? "Sign Up!" : "Sign In!";
     const signinToggle = signup ? "Sign In Instead" : "Sign Up Instead";
     const buttonClass = signup ? "up" : "in";
 
     const signinError = this.props.userObject.error;
-    const emailError = this.state.emailError ? <span className="error">{this.state.emailError}</span> : null;
+    const emailError = this.state.emailError 
+      ? <span className="error">{this.state.emailError}</span> 
+      : null;
+
     const errorStatement = !signinError
       ? null
       : <span className="error">{signinError}</span>;

@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
+/* eslint-disable camelcase */
+
 import { shallow } from 'enzyme';
 import React from 'react';
 import { MovieCard, mapStateToProps, mapDispatchToProps } from './MovieCard';
-import * as actions from '../../Actions';
 
 describe('tests for MovieCard component', () => {
   describe('component tests', () => {
@@ -21,7 +23,7 @@ describe('tests for MovieCard component', () => {
         movie: {
           adult: false,
           backdrop_path: "/askg3SMvhqEl4OL52YuvdtY40Yb.jpg",
-          genre_ids: [ 10751, 16, 12 ],
+          genre_ids: [10751, 16, 12],
           id: 354912,
           original_language: "en",
           original_title: "Coco",
