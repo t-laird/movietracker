@@ -5,7 +5,7 @@ import { signInAttempt, signUpAttempt } from '../../Actions';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-class SignIn extends Component {
+export class SignIn extends Component {
   constructor() {
     super();
     this.state = {
@@ -156,11 +156,11 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProps = store => ({
+export const mapStateToProps = store => ({
   userObject: store.SignIn
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   signInToApp: (username, password) => {
     dispatch(signInAttempt(username, password));
   },

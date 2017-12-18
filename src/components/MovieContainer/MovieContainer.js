@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 const key = require('../../Utils/key');
 
-class MovieContainer extends Component {
+export class MovieContainer extends Component {
 
   componentDidMount() {
     this.props.fetchMovieList(
@@ -23,13 +23,37 @@ class MovieContainer extends Component {
       : this.props.movies.movies;
 
     const movieCardsArray = movieArray.map((movie) => {
-      return (<MovieCard key={movie.id}
+      return (<MovieCard 
+        key={movie.id}
         poster={movie.poster_path}
         title={movie.title}
         overview={movie.overview}
         rating={movie.vote_average}
         movie={movie} />);
     });
+
+        
+    if (
+      !this.props.userData.signedIn && 
+      location==='/favorites'
+    ) {
+      return (
+        <h3 className="favorites-warning">Please Login 
+          <Link to="/signin">Here</Link>
+          to add Favorites</h3>
+      );
+    } else if (
+      this.props.userData.signedIn && 
+      location==='/favorites' && 
+      !movieCardsArray.length
+    ) {
+      return (
+        <h3 className="favorites-warning">
+          You don&#39;t have any favorites! Return home
+          <Link to="/">here</Link> 
+            and add some!</h3>
+      );
+    }
 
     return movieCardsArray;
   }
@@ -43,7 +67,7 @@ class MovieContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return {
     movies: state.movies,
     favorites: state.favorites,
@@ -53,7 +77,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return {
     fetchMovieList: (url) => dispatch(fetchMovieList(url))
   };
