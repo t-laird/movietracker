@@ -19,6 +19,22 @@ describe('movies reducer', () => {
   });
 
   it('should return true if MOVIES_IS_LOADING', () => {
-    
+    const action = { type: 'MOVIES_IS_LOADING' };
+
+    expect(movies(undefined, action)).toEqual({
+      moviesIsLoading: true,
+      movies: [],
+      moviesHasErrored: false
+    });
+  });
+
+  it('should return true if MOVIES_HAS_ERRORED', () => {
+    const action = { type: 'MOVIES_HAS_ERRORED' };
+
+    expect(movies(undefined, action)).toEqual({
+      moviesIsLoading: false,
+      movies: [],
+      moviesHasErrored: true
+    });
   });
 });
