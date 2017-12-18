@@ -9,7 +9,9 @@ import logger from 'redux-logger';
 
 import RootReducer from './Reducers';
 
-const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+const devTools =
+  window.__REDUX_DEVTOOLS_EXTENSION__
+  && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 const middleware = applyMiddleware(thunk, promise, logger);
 
