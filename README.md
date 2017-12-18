@@ -6,7 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Move Tracker
 ## Thomas Laird, Sam Singer & David Ryan
 
-### Movie Tracker was build using React, Redux, SCSS. Its testing environment uses enzyme & jest. I am happy to answer any further questions about the project or how to get a working version set up via email LairdThomasR@gmail.com.
+### Movie Tracker was build using React, Redux, SCSS. Its testing environment uses Enzyme & Jest. I am happy to answer any further questions about the project or how to get a working version set up via email LairdThomasR@gmail.com. The timeframe for project completion was 12/1/17-12/8/17.
+
+
 #### Instructions for using this application: 
 
 ##### Installing the backend:
