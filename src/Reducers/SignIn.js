@@ -42,10 +42,15 @@ const SignIn = (state = defaultState, action) => {
     );
   case 'SIGN_UP_SUCCESS':
     const { newUser } = action;
+    const cleanUser = {
+      name: newUser.name,
+      email: newUser.email,
+      id: newUser.id };
+    localStorage.setItem('xyz123MTracker', JSON.stringify(cleanUser));
     return Object.assign(
       {},
       {signedIn: true},
-      {userData: {name: newUser.name, email: newUser.email, id: newUser.id}},
+      {userData: cleanUser},
       {error: false}
     );
   case 'SIGN_UP_FAILURE':
