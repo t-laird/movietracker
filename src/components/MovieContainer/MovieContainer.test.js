@@ -44,7 +44,28 @@ describe('MovieContainer tests', () => {
     expect(result.favorites).toEqual(mockStore.favorites);
   });
 
+  it.skip('should mount with the correct elements', () => {
+    const expectedSectionLength = 1;
 
+    expect(movieContainer.find('section').length).toEqual(expectedSectionLength);
+  });
+
+  it.skip('fetch within componentDidMount', async () => {
+    window.fetch = jest.fn().mockImplementation(() => ({
+      status: 200,
+      json: () => new Promise((resolve) => {
+        resolve({
+          movies: [
+            { title: 'Star Wars', score: 10 }, { title: 'Blade Runner', score: 3 }
+          ]
+        });
+      })
+    }));
+
+    const renderedComponent = await shallow(<Provider><MovieContainer {...mockProps} /></Provider>);
+    await renderedComponent.update();
+    expect(renderedComponent('movies').length).toEqual(2);
+  });
 
 });
 
