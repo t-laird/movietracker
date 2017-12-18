@@ -83,7 +83,7 @@ describe('all actions', () => {
 
     });
 
-    it.skip('calls in signInSuccess & updateFavorites on succesful signin', () => {
+    it.skip('calls signInSuccess & updateFavorites on succesful signin', () => {
       const mockUserObject = {
         data: {
           email: "123",
@@ -171,77 +171,39 @@ describe('all actions', () => {
     });
   });
 
-  describe('Favorites actions', () => {
-    it('should return object with type EMPTY_FAVORITES', () => {
+  describe('favorite actions', () => {
+    it('updateFavorites returns an action with type of UPDATE_FAVORITES', async () => {
+      const favorites = [{ title: 'Casper' }, { title: 'Thor' }, { title: 'Batman' }];
+      const expected = {
+        type: 'UPDATE_FAVORITES',
+        favoritesData: favorites
+      };
+
+      window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(
+          {
+            data: [
+              { title: 'Casper' }, { title: 'Thor' }, { title: 'Batman' }
+            ],
+            message: "Retrieved All favorites",
+            status: "success"
+          }
+        )
+      }));
+
+      const favoriteSetRes = await actions.updateFavorites(3);
+      expect(favoriteSetRes).toEqual(expected);
+    });
+
+    it('clearFavorites returns an obj with type of CLEAR_FAVORITES', () => {
       const expected = {
         type: 'EMPTY_FAVORITES'
       };
 
-      expect(actions.emptyFavorites()).toEqual(expected)
-    });
+      const emptyFavsRes = actions.emptyFavorites();
 
-    it('should have a type of UPDATE_FAVORITES', async () => {
-      const mockFavs = [
-        {title: 'Star Wars'}
-      ];
-      const expectedRes = {
-        type: 'UPDATE_FAVORITES',
-        favoritesData: mockFavs
-      };
-      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        status: 200,
-        json: () => Promise.resolve(
-          {
-            "status": "success",
-            "message": "favorites incoming",
-            "data": mockFavs
-          }
-        )
-      }));
-      const updateFavoritesRes = await actions.updateFavorites(4);
-      expect(updateFavoritesRes).toEqual(expectedRes);
+      expect(emptyFavsRes).toEqual(expected);
     });
   });
-
-  // it('has a type of SIGN_UP_SUCCESS', async () => {
-  //   const mockUser = {
-  //     email: "123",
-  //     id: 4,
-  //     name: "123",
-  //     password: "123"
-  //   };
-  //   const expectedRes = {
-  //     type: 'SIGN_UP_SUCCESS',
-  //     newUser: mockUser
-  //   };
-  //   window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-  //     status: 200,
-  //     json: () => Promise.resolve(
-  //       {
-  //         "status": "success",
-  //         "message": "fetched all users",
-  //         "data": [mockUser]
-  //       }
-  //     )
-  //   }));
-  //   const signUpSuccessRes = await actions.signUpSuccess(4);
-  //   expect(signUpSuccessRes).toEqual(expectedRes);
-  // });
-
-  // describe('favorite actions', () => {
-  //   it('setFavorites returns an obj  with type of SET_FAVORITES', () => {
-  //     const favorites = [{ title: 'Casper' }, { title: 'Thor' }, { title: 'Batman' }];
-  //     const expected = {
-  //       type: 'SET_FAVORITES',
-  //       favorites
-  //     };
-  //   });
-
-  //   it('clearFavorites returns an obj with type of CLEAR_FAVORITES', () => {
-  //     const favorites = [{ title: 'Casper' }, { title: 'Thor' }, { title: 'Batman' }];
-  //     const expected = {
-  //       type: 'CLEAR_FAVORITES',
-  //       favorites
-  //     };
-  //   });
 });
