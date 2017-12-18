@@ -18,7 +18,10 @@ class MovieContainer extends Component {
 
   renderMovies() {
     const location = this.props.location.pathname;
-    const movieArray = location === '/favorites' ? this.props.favorites : this.props.movies.movies;
+    const movieArray = location === '/favorites' 
+      ? this.props.favorites 
+      : this.props.movies.movies;
+
     const movieCardsArray = movieArray.map((movie) => {
       return (<MovieCard key={movie.id}
         poster={movie.poster_path}
@@ -43,7 +46,8 @@ class MovieContainer extends Component {
       !movieCardsArray.length
     ) {
       return (
-        <h3 className="favorites-warning">You don&#39;t have any favorites! Return home
+        <h3 className="favorites-warning">
+          You don&#39;t have any favorites! Return home
           <Link to="/">here</Link> 
             and add some!</h3>
       );

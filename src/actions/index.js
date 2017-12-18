@@ -129,7 +129,7 @@ export const signUpFailure = (error) => {
 export const signUpSuccess = async (id) => {
   const allUsers = await fetch('/api/users');
   const userData = await allUsers.json();
-  const newUser = userData.data.find( user => user.id === id);
+  const newUser = await userData.data.find( user => user.id === id);
   return {
     type: "SIGN_UP_SUCCESS",
     newUser
@@ -138,7 +138,7 @@ export const signUpSuccess = async (id) => {
 
 export const addFavorite = (movie, id) => {
   return async (dispatch) => {
-    const submitFavorite = await fetch('/api/users/favorites/new', {
+    await fetch('/api/users/favorites/new', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -151,7 +151,6 @@ export const addFavorite = (movie, id) => {
         vote_average: movie.vote_average,
         overview: movie.overview })
     });
-    // const favoriteAdded = await submitFavorite.json();
     return dispatch(updateFavorites(id));
   };
 };
@@ -159,15 +158,13 @@ export const addFavorite = (movie, id) => {
 export const removeFavorite = (movie, userId) => {
   return async (dispatch) => {
     const newId = movie.movie_id ? movie.movie_id : movie.id;
-    const deleteFavorite =
-      await fetch(`/api/users/${userId}/favorites/${newId}`, {
-        method: 'DELETE',
-        body: JSON.stringify({ movie_id: newId, user_id: userId }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-    const deleteSuccess = await deleteFavorite.json();
+    await fetch(`/api/users/${userId}/favorites/${newId}`, {
+      method: 'DELETE',
+      body: JSON.stringify({ movie_id: newId, user_id: userId }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
     return dispatch(updateFavorites(userId));
   };
 };
