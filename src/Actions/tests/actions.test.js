@@ -180,8 +180,26 @@ describe('all actions', () => {
       expect(actions.emptyFavorites()).toEqual(expected)
     });
 
-    it('should have a type of UPDATE_FAVORITES', () => {
-      
+    it('should have a type of UPDATE_FAVORITES', async () => {
+      const mockFavs = [
+        {title: 'Star Wars'}
+      ];
+      const expectedRes = {
+        type: 'UPDATE_FAVORITES',
+        favoritesData: mockFavs
+      };
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(
+          {
+            "status": "success",
+            "message": "favorites incoming",
+            "data": mockFavs
+          }
+        )
+      }));
+      const updateFavoritesRes = await actions.updateFavorites(4);
+      expect(updateFavoritesRes).toEqual(expectedRes);
     });
   });
 
