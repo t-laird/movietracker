@@ -21,7 +21,7 @@ export const moviesFetchDataSuccess = (movies) => {
 
 export const fetchMovieList = (url) => {
   return (dispatch) => {
-    dispatch(moviesIsLoading(true));
+    dispatch(moviesIsLoading());
     fetch(url)
       .then((response) => {
         if (!response.ok) {
