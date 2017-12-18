@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import favorites from '../favorites';
 import * as actions from '../../Actions';
 
@@ -44,7 +46,7 @@ describe('Favorites reducer', () => {
       )
     }));
     handleFavorite();
-    expect(favorites({}, actions.updateFavorites(mockFavoritesData))).toEqual(expected)
+    expect(favorites({}, actions.updateFavorites(mockFavoritesData))).toEqual(expected);
 
   });
 
