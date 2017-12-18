@@ -16,7 +16,8 @@ class SignIn extends Component {
       usernameClass: 'signin-input',
       passwordClass: 'signin-input',
       passwordDisplay: 'password',
-      signup: false
+      signup: false,
+      emailError: null
     };
   }
 
@@ -47,16 +48,26 @@ class SignIn extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     const { nameInputVal, usernameInputVal, passwordInputVal } = this.state;
+    const emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'g');
     if (this.state.signup) {
-      if (nameInputVal.length > 2
-          && usernameInputVal.length > 2
-          && passwordInputVal.length > 2) {
-        this.props.signUpForApp(
-          nameInputVal,
-          usernameInputVal,
-          passwordInputVal
-        );
-      }
+      if (
+        nameInputVal.length > 2
+        && usernameInputVal.length > 2
+        && passwordInputVal.length > 2
+      ) {
+        if (!emailRegex.test(usernameInputVal)) {
+          this.setState({
+            emailError: 'please enter a valid email'
+          });
+        } else {
+          this.props.signUpForApp(
+            nameInputVal,
+            usernameInputVal,
+            passwordInputVal
+          );
+        }
+      } 
+
     } else {
       this.props.signInToApp(
         usernameInputVal,
@@ -88,7 +99,7 @@ class SignIn extends Component {
     const buttonClass = signup ? "up" : "in";
 
     const signinError = this.props.userObject.error;
-
+    const emailError = this.state.emailError ? <span className="error">{this.state.emailError}</span> : null;
     const errorStatement = !signinError
       ? null
       : <span className="error">{signinError}</span>;
@@ -99,6 +110,7 @@ class SignIn extends Component {
           <Link to="/" className="sign-in-close">Close</Link>
           {errorStatement}
           {signupInput}
+          {emailError}
           <input
             type="text"
             className={this.state.usernameClass}
