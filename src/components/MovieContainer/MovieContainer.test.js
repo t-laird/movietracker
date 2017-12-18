@@ -1,5 +1,9 @@
 import React from 'react';
-import  { MovieContainer, mapStateToProps, mapDispatchToProps } from './MovieContainer'
+import  { 
+  MovieContainer, 
+  mapStateToProps, 
+  mapDispatchToProps 
+} from './MovieContainer';
 import { shallow } from 'enzyme';
 import * as actions from '../../Actions';
 import { Provider } from 'react-redux';
@@ -15,30 +19,33 @@ describe('MovieContainer tests', () => {
       isLoading: true,
       favorites: [{ title: "Movie" }]
     };
-    movieContainer = shallow(<Provider><MovieContainer {...mockProps} /></Provider>);
+    movieContainer = shallow(
+      <Provider><MovieContainer {...mockProps} /></Provider>
+    );
   });
 
 
   it('should match the snapshot', () => {
     expect(movieContainer).toMatchSnapshot();
-  })
+  });
 
   it('should render correctly', () => {
     expect(movieContainer).toBeDefined();
   });
 
   it.skip('should pull movies from the store', () => {
-
-    const result = mapStateToProps(mockProps);
-    expect(result.movies).toEqual(mockProps.movies);
-    expect(result.favorites).toEqual(mockProps.favorites);
+    const mockStore = {
+      movies: [{ title: "Movie" }],
+      favorites: [{ title: "Movie" }]
+    };
+    
+    const result = mapStateToProps(mockStore);
+    expect(result.movies).toEqual(mockStore.movies);
+    expect(result.favorites).toEqual(mockStore.favorites);
   });
 
-  it.skip('should be instantiated with the correct children', () => {
-    const expectedSectionLength = 1;
 
-    expect(movieContainer.find('section').length).toEqual(expectedSectionLength);
-  });
+
 });
 
 
