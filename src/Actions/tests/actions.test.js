@@ -169,9 +169,61 @@ describe('all actions', () => {
       };
       expect(actions.moviesFetchDataSuccess(movies)).toEqual(expected);
     });
+  });
 
-    it('should fetch a movielist', () => {
+  describe('Favorites actions', () => {
+    it('should return object with type EMPTY_FAVORITES', () => {
+      const expected = {
+        type: 'EMPTY_FAVORITES'
+      };
+
+      expect(actions.emptyFavorites()).toEqual(expected)
+    });
+
+    it('should have a type of UPDATE_FAVORITES', () => {
       
     });
   });
+
+  // it('has a type of SIGN_UP_SUCCESS', async () => {
+  //   const mockUser = {
+  //     email: "123",
+  //     id: 4,
+  //     name: "123",
+  //     password: "123"
+  //   };
+  //   const expectedRes = {
+  //     type: 'SIGN_UP_SUCCESS',
+  //     newUser: mockUser
+  //   };
+  //   window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+  //     status: 200,
+  //     json: () => Promise.resolve(
+  //       {
+  //         "status": "success",
+  //         "message": "fetched all users",
+  //         "data": [mockUser]
+  //       }
+  //     )
+  //   }));
+  //   const signUpSuccessRes = await actions.signUpSuccess(4);
+  //   expect(signUpSuccessRes).toEqual(expectedRes);
+  // });
+
+  // describe('favorite actions', () => {
+  //   it('setFavorites returns an obj  with type of SET_FAVORITES', () => {
+  //     const favorites = [{ title: 'Casper' }, { title: 'Thor' }, { title: 'Batman' }];
+  //     const expected = {
+  //       type: 'SET_FAVORITES',
+  //       favorites
+  //     };
+  //   });
+
+  //   it('clearFavorites returns an obj with type of CLEAR_FAVORITES', () => {
+  //     const favorites = [{ title: 'Casper' }, { title: 'Thor' }, { title: 'Batman' }];
+  //     const expected = {
+  //       type: 'CLEAR_FAVORITES',
+  //       favorites
+  //     };
+  //   });
 });
